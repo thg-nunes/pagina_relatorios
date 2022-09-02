@@ -1,4 +1,4 @@
-import * as Styled from './style'
+import * as Styled from './styled'
 
 type HeaderProps = {
   text: string
