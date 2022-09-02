@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/contexts/contextProvider.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/contexts/contextProvider.js", "src/contexts/context.js"],
   "exclude": ["node_modules"]
 }
