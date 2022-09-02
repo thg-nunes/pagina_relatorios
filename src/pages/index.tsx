@@ -1,6 +1,13 @@
+import { FiltersCreate } from "../client/filtersCreate"
+import { Header } from "../components/header"
+
 const Home = () => {
   return (
-    <div>App</div>
+    <>
+      <Header text="Lorem" />
+
+      <FiltersCreate />
+    </>
   )
 }
 
