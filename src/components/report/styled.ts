@@ -11,14 +11,6 @@ export const Container = styled.div`
     justify-content: space-between;
 
     padding: ${({theme}) => theme.spacings[5]} ${({theme}) => theme.spacings[75]};
-
-    img {
-      cursor: pointer;
-      transition: 150ms all ease-in-out;
-      :hover {
-        filter: brightness(.95);
-      }
-    }
   }
 `
 
