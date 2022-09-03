@@ -6,4 +6,6 @@ export const Container = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   gap: ${({theme}) => theme.spacings[5]};
+
+  padding: ${({theme}) => theme.spacings[75]} 0;
 `
