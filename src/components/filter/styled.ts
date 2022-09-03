@@ -17,6 +17,8 @@ export const Container = styled.section`
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 5px;
     padding: .15rem ${({theme}) => theme.spacings[5]};
+
+    position: relative;
   }
 `
 
@@ -25,6 +27,10 @@ type OptionsProps = {
 }
 
 export const Options = styled.div<OptionsProps>`
+  position: absolute;
+  width: 15.7%;
+  height: 100%;
+
   display: ${({filterVisible}) => {
     if(filterVisible) return 'block'
     return 'none'

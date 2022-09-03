@@ -1,4 +1,4 @@
-import { Dispatch, ReactElement, SetStateAction, useContext, useEffect, useState } from 'react'
+import { ReactElement, useContext, useEffect, useState } from 'react'
 import { ContextFilters } from '../../contexts/contextProvider'
 import * as Styled from './styled'
 
@@ -15,41 +15,51 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
   const [yearOptionsVisible, setYearOptionsVisible] = useState(false)
   const [monthOptionsVisible, setMonthOptionsVisible] = useState(false)
 
-  const [allYears] = useState<ReactElement[]>([])
-  const [allMonths] = useState<ReactElement[]>([])
+  const [allYears, setAllYears] = useState<ReactElement[]>([])
+  const [allMonths, setAllMonths] = useState<ReactElement[]>([])
 
   function generateYears() {
+    const yearsVlid = []
+
     for (let i = 2020; i <= context.state.year; i++) {
-      allYears.unshift(
+      yearsVlid.unshift(
         <span
           key={i}
           className={context.state.year === i ? 'selected': ''}
           onClick={() => {
-            context.dispatch({type: 'SET_YEAR', payload: { year: i}})
-            setYearOptionsVisible(!yearOptionsVisible)
+            context.dispatch({type: 'SET_YEAR', payload: { year: i }})
+            setYearOptionsVisible(false)
           }}
         >{i}</span>
       )
     }
+
+    setAllYears(yearsVlid)
   }
 
   function generateMonths() {
+    const monthsVlid = []
+
     for (let i = 0; i <= months.length; i++) {
-      allMonths.push(
+      monthsVlid.push(
         <span
           key={i}
           className={context.state.month === i + 1 ? 'selected': ''}
           onClick={() => {
             context.dispatch({type: 'SET_MONTH', payload: { month: i + 1}})
-            setMonthOptionsVisible(!monthOptionsVisible)
+            setMonthOptionsVisible(false)
           }}
         >{months[i]}</span>
       )
     }
+
+    setAllMonths(monthsVlid)
   }
 
-  generateYears()
-  generateMonths()
+  useEffect(() => {
+    generateYears()
+    generateMonths()
+  }, [])
 
   return (
     <Styled.Container>
@@ -60,7 +70,7 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
             <input
               type="text"
               placeholder={String(context.state.year)}
-              onClick={() => setYearOptionsVisible(!yearOptionsVisible)}
+              onClick={() => setYearOptionsVisible(true)}
             />
             <Styled.Options filterVisible={yearOptionsVisible}>
               {allYears.map(year => (
@@ -76,7 +86,7 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
             <input
               type="text"
               placeholder={String(months[context.state.month - 1])}
-              onClick={() => setMonthOptionsVisible(!monthOptionsVisible)}
+              onClick={() => setMonthOptionsVisible(true)}
             />
             <Styled.Options filterVisible={monthOptionsVisible}>
               {allMonths.map(mmonth => (
