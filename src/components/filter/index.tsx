@@ -70,7 +70,7 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
             <input
               type="text"
               placeholder={String(context.state.year)}
-              onClick={() => setYearOptionsVisible(true)}
+              onClick={() => setYearOptionsVisible(!yearOptionsVisible)}
             />
             <Styled.Options filterVisible={yearOptionsVisible}>
               {allYears.map(year => (
@@ -86,7 +86,7 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
             <input
               type="text"
               placeholder={String(months[context.state.month - 1])}
-              onClick={() => setMonthOptionsVisible(true)}
+              onClick={() => setMonthOptionsVisible(!monthOptionsVisible)}
             />
             <Styled.Options filterVisible={monthOptionsVisible}>
               {allMonths.map(mmonth => (
