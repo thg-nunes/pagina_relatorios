@@ -17,7 +17,7 @@ export const FiltersCreate = () => {
         labelText='Mês'
       />
 
-      <Icon srcImage='/search.svg' altImage='icone de busca' />
+      <Icon srcImage='/icons/btn-buscar.svg' altImage='icone de busca' />
 
     </Styled.Container>
   )
