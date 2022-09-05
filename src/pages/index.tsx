@@ -11,42 +11,10 @@ const Home = () => {
       <FiltersCreate />
 
       <Styled.Container>
-        <Report textReport="Relatorio Estatístico - Data" printdIcon={{
-          altImage: 'button download',
-          srcImage: '/'
-        }}
-          downloadIcon={{
-          altImage: 'button download',
-          srcImage: '/'
-        }}
-        />
-        <Report textReport="Relatorio Estatístico - Data" printdIcon={{
-          altImage: 'button download',
-          srcImage: '/'
-        }}
-          downloadIcon={{
-          altImage: 'button download',
-          srcImage: '/'
-        }}
-        />
-        <Report textReport="Relatorio Estatístico - Data" printdIcon={{
-          altImage: 'button download',
-          srcImage: '/'
-        }}
-          downloadIcon={{
-          altImage: 'button download',
-          srcImage: '/'
-        }}
-        />
-        <Report textReport="Relatorio Estatístico - Data" printdIcon={{
-          altImage: 'button download',
-          srcImage: '/'
-        }}
-          downloadIcon={{
-          altImage: 'button download',
-          srcImage: '/'
-        }}
-        />
+        <Report textReport="Relatorio Estatístico - Data" />
+        <Report textReport="Relatorio Estatístico - Data" />
+        <Report textReport="Relatorio Estatístico - Data" />
+        <Report textReport="Relatorio Estatístico - Data" />
       </Styled.Container>
     </>
   )
