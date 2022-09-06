@@ -1,13 +1,20 @@
 import { useContext } from "react"
 import { ContextFilters } from "../../contexts/contextProvider"
 
-type DispatchFilters = {}
+type DispatchFiltersData = {
+  type: string,
+  payload: any
+}
 
 type ContextFiltersProps = {
-  dispatch: () => void
+  dispatch: (data: DispatchFiltersData) => void
   state: {
     month: number
     year: number
+    searchByMonthOrYear: {
+      id: string,
+      file: string
+    }[] | null
   }
 }
 
