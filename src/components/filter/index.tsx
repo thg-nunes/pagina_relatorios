@@ -17,6 +17,7 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
 
   const [allYears, setAllYears] = useState<ReactElement[]>([])
   const [allMonths, setAllMonths] = useState<ReactElement[]>([])
+  const [hasMonthSelected, setHasMonthSelected] = useState(false)
 
   function generateYears() {
     const yearsVlid = []
@@ -49,6 +50,7 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
           onClick={() => {
             context.dispatch({type: 'SET_MONTH', payload: { month: i + 1}})
             setMonthOptionsVisible(false)
+            setHasMonthSelected(!hasMonthSelected)
           }}
         >{months[i]}</span>
       )
@@ -60,7 +62,7 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
   useEffect(() => {
     generateYears()
     generateMonths()
-  }, [])
+  }, [context.state])
 
   return (
     <Styled.Container>
