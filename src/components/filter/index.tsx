@@ -1,5 +1,5 @@
-import { ReactElement, useContext, useEffect, useState } from 'react'
-import { ContextFilters } from '../../contexts/contextProvider'
+import { ReactElement, useEffect, useState } from 'react'
+import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
 import * as Styled from './styled'
 
 type FilterProps = {
@@ -9,7 +9,7 @@ type FilterProps = {
 
 export const Filter = ({ labelId, labelText }: FilterProps) => {
 
-  const context = useContext(ContextFilters)
+  const context = useMyContextFilters()
   const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
   const [yearOptionsVisible, setYearOptionsVisible] = useState(false)
@@ -88,7 +88,7 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
           <Styled.InputAndOptions>
             <input
               type="text"
-              placeholder={String(months[context.state.month - 1])}
+              placeholder={context.state.month !== null ? String(months[context.state.month - 1]) : ('Selecionar')}
               onClick={() => setMonthOptionsVisible(!monthOptionsVisible)}
             />
             <Styled.Options filterVisible={monthOptionsVisible}>
