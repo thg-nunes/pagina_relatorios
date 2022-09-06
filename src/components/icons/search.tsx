@@ -1,6 +1,8 @@
 import Image from "next/image"
+import { useState } from "react";
 
 import styled from 'styled-components';
+import { useMyContextFilters } from "../../hooks/contexts/useMyContextFilters";
 import { api } from "../../services/axios";
 
 type OnSearchReportsProps = {
@@ -34,9 +36,7 @@ export const Container = styled.span`
 
 export const SearchReport = ({ altImage, srcImage, onSearchReports }: IconProps) => {
 
-  // const [reportData, setReportData] = useState<string>('')
-
-  // const pdf = new jsPDF()
+  const context = useMyContextFilters()
 
   async function getReportBYYearAndMonth() {
     try {
@@ -45,24 +45,14 @@ export const SearchReport = ({ altImage, srcImage, onSearchReports }: IconProps)
           year: onSearchReports.year,
           month: onSearchReports.month
         }
-      }).then( async res => {
+      }).then(res => {
         const { data } = res.data
-        const file_id = data[0].id
-
-        await api.get(`/relatorio/${file_id}`).then(res => {
-          // setReportData(res.data)
-          console.log(res.data)
-        })
+        context.dispatch({type: 'SEARCH_REPORT', payload: { data } })
       })
     } catch (err) {
       console.log(err)
     }
   }
-
-  // if(reportData !== '') {
-  //   pdf.text(reportData, 10, 10)
-  //   pdf.save('relatorio.pdf')
-  // }
 
   return (
     <Container>

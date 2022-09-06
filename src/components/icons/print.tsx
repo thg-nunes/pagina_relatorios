@@ -4,6 +4,7 @@ import styled from 'styled-components';
 type IconProps = {
   srcImage: string
   altImage: string
+  fileId?: string
 }
 
 
@@ -17,10 +18,12 @@ export const Container = styled.span`
   }
 `
 
-export const Icon = ({ altImage, srcImage }: IconProps) => {
+export const Icon = ({ altImage, srcImage, fileId }: IconProps) => {
   return (
     <Container>
-      <Image src={srcImage} alt={altImage} width='25px' height='25px' />
+      <Image src={srcImage} alt={altImage} width='25px' height='25px' onClick={() => {
+        window.open(`http://localhost:8000/relatorio/${fileId}`)
+      }} />
     </Container>
   )
 }
