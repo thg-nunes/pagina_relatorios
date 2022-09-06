@@ -1,9 +1,11 @@
-import Image from 'next/image'
 import { Filter } from '../../components/filter'
-import { Icon } from '../../components/icons/print'
+import { SearchReport } from '../../components/icons/search'
+import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
 import * as Styled from './styled'
 
 export const FiltersCreate = () => {
+
+  const context = useMyContextFilters()
 
   return (
     <Styled.Container>
@@ -17,7 +19,10 @@ export const FiltersCreate = () => {
         labelText='Mês'
       />
 
-      <Icon srcImage='/icons/btn-buscar.svg' altImage='icone de busca' />
+      <SearchReport srcImage='/icons/btn-buscar.svg' altImage='icone de busca' onSearchReports={{
+        year: context.state.year,
+        month: context.state.month,
+      }} />
 
     </Styled.Container>
   )
