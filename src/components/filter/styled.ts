@@ -17,7 +17,6 @@ export const Container = styled.section`
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 5px;
     padding: .15rem ${({theme}) => theme.spacings[5]};
-
     position: relative;
   }
 `
@@ -28,7 +27,7 @@ type OptionsProps = {
 
 export const Options = styled.div<OptionsProps>`
   position: absolute;
-  width: 15.7%;
+  width: 100%;
   height: 100%;
 
   display: ${({filterVisible}) => {
@@ -55,4 +54,6 @@ export const Options = styled.div<OptionsProps>`
 `
 
 export const InputAndOptions = styled.section`
+  position: relative;
+
 `

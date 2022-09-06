@@ -21,7 +21,8 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
   function generateYears() {
     const yearsVlid = []
 
-    for (let i = 2020; i <= context.state.year; i++) {
+    /* na linha seguinte, 2022 é o ano onde iniciou a gereção dos relatorios, nesse caso, as opções disponiveis iniciam em 2022 */
+    for (let i = 2022; i <= context.state.year; i++) {
       yearsVlid.unshift(
         <span
           key={i}
