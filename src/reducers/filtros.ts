@@ -4,6 +4,8 @@ export const reducerFilter = (state, action) => {
       return { ...state, year: action.payload.year }
     case 'SET_MONTH':
       return { ...state, month: action.payload.month }
+    case 'SEARCH_REPORT':
+      return { ...state, searchByMonthOrYear: action.payload.data }
     default:
       return {...state}
   }
