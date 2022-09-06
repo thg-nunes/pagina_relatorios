@@ -1,9 +1,7 @@
 import Image from "next/image"
-import { jsPDF } from "jspdf" ;
 
 import styled from 'styled-components';
 import { api } from "../../services/axios";
-import { useState } from "react";
 
 type OnSearchReportsProps = {
   year: number
