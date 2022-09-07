@@ -15,7 +15,7 @@ export const theme = {
   spacings: {
     5: '.5rem',
     75: '.75rem',
-    1: '.1rem',
+    1: '1rem',
     1.25: '1.25rem',
     1.5: '1.5rem',
     1.75: '1.75rem',
