@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const Container = styled.section`
   display: flex;
   align-items: flex-start;
-  justify-content: space-around;
 
   width: 100%;
-  max-width: 20%;
+  max-width: min-content;
+  justify-content: flex-start;
 
   label {
     line-height: 1.6rem;
@@ -19,6 +19,12 @@ export const Container = styled.section`
     padding: .15rem ${({theme}) => theme.spacings[5]};
     position: relative;
   }
+
+  @media (max-width: 540px) {
+    max-width: none;
+    padding: .25rem 0;
+    justify-content: start;
+  }
 `
 
 type OptionsProps = {
@@ -26,7 +32,6 @@ type OptionsProps = {
 }
 
 export const Options = styled.div<OptionsProps>`
-  position: absolute;
   width: 100%;
   height: 100%;
 
@@ -51,9 +56,13 @@ export const Options = styled.div<OptionsProps>`
   .selected {
     background: #0D99FF;
   }
+
+  @media (max-width: 540px) {
+    position: absolute;
+    z-index: 2;
+  }
 `
 
 export const InputAndOptions = styled.section`
   position: relative;
-
 `

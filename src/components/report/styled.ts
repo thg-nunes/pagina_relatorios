@@ -15,8 +15,17 @@ export const Container = styled.div`
 `
 
 export const Icons = styled.section`
-  width: 7%;
+  width: 85px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @media (max-width: 1024px) {
+    width: 80px;
+  }
+
+  @media (max-width: 768px) {
+    width: 75px;
+  }
+
 `

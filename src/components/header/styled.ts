@@ -14,4 +14,24 @@ export const Container = styled.div`
     font-weight: bold;
 
   }
+
+  @media (max-width: 1024px) {
+    p {
+      padding: 0;
+      max-width: 97%;
+      font-size: ${({theme}) => theme.font.sizes['1.5']};
+    }
+  }
+
+  @media (max-width: 768px) {
+    p {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 540px) {
+    p {
+      font-size: ${({theme}) => theme.font.sizes['1']};
+    }
+  }
 `

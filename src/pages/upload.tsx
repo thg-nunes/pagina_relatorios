@@ -1,13 +1,26 @@
-import { useRef } from "react";
+import { useState } from "react";
 import { Filter } from "../components/filter";
 import { useMyContextFilters } from "../hooks/contexts/useMyContextFilters";
+import { api } from "../services/axios";
 import * as Styled from '../styles/pages/upload'
 
 export default function Upload() {
-  const yearRef = useRef()
-  const fileRef = useRef<any>()
+  let [file, setFile] = useState<File | string>('')
   const context = useMyContextFilters()
   const date = new Date()
+
+ async function handleSendFile() {
+  const formData = new FormData()
+
+  if(file !== '') {
+    formData.append('new_report', file)
+
+    await api.post('/relatorio', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(res => console.log(res))
+  }}
 
   return (
     <Styled.Container>
@@ -24,24 +37,14 @@ export default function Upload() {
       </Styled.YearAndMonthInput>
 
       <Styled.UploadFileInput>
-        <label for="file">Selecionar Arquivo</label>
-        <input type="file" name="selecionar arquivo para upload" id="file" ref={fileRef} />
+        <label htmlFor="file">Selecionar Arquivo</label>
+        <input type="file" name="selecionar arquivo para upload" id="file" onChange={(e) => {
+          setFile(e.target.files ? e.target.files[0] : '')
+        }} />
       </Styled.UploadFileInput>
 
       <Styled.SubmitButton>
-        <input type="submit" value="Enviar" onClick={() => {
-          const yearReadData = context.state.year
-          let monthReadData = context.state.month
-          const fileData = fileRef
-
-          if(monthReadData === null) {
-            monthReadData = date.getMonth() + 1
-          }
-
-          console.log(yearReadData)
-          console.log(monthReadData)
-          console.log(fileData)
-        }}/>
+        <input type="submit" value="Enviar" onClick={() => handleSendFile()}/>
       </Styled.SubmitButton>
 
     </Styled.Container>

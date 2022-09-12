@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <ContextProvider>
-        <Header text='Lorem' />
+        <Header text='Acervo de Relatórios Estatísticos - JUCEMA' />
         <Component {...pageProps} />
         <GlobalStyle />
       </ContextProvider>

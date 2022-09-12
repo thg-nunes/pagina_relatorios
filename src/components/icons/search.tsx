@@ -32,6 +32,7 @@ export const Container = styled.span`
       filter: brightness(.95);
     }
   }
+
 `
 
 export const SearchReport = ({ altImage, srcImage, onSearchReports }: IconProps) => {

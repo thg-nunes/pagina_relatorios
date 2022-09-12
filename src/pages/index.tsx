@@ -1,6 +1,5 @@
 import { GetStaticProps } from "next"
 import { FiltersCreate } from "../client/filtersCreate"
-import { Header } from "../components/header"
 import { Report } from "../components/report"
 import { useMyContextFilters } from "../hooks/contexts/useMyContextFilters"
 import { api } from "../services/axios"
