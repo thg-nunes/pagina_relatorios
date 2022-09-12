@@ -34,6 +34,7 @@ type OptionsProps = {
 export const Options = styled.div<OptionsProps>`
   width: 100%;
   height: 100%;
+  position: absolute;
 
   display: ${({filterVisible}) => {
     if(filterVisible) return 'block'
