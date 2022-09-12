@@ -3,13 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   margin: 0 auto;
   max-width: 1280px;
-`
-
-export const YearAndMonthInput = styled.section`
   display: flex;
-  width: 100%;
+  padding: ${({theme}) => theme.spacings["5"]} 0;
   gap: 1rem;
-  padding: ${({theme}) => theme.spacings["1"]};
 `
 
 export const UploadFileInput = styled.section`
@@ -48,7 +44,6 @@ export const SubmitButton = styled.section`
     font-weight: 600;
     cursor: pointer;
     border: none;
-    margin: ${({theme}) => theme.spacings["5"]} 0;
 
     transition: 150ms all ease-in-out;
 
