@@ -1,3 +1,4 @@
+import { MyLink } from '../myLink'
 import * as Styled from './styled'
 
 type HeaderProps = {
@@ -7,7 +8,13 @@ type HeaderProps = {
 export const Header = ({text}: HeaderProps) => {
   return (
     <Styled.Container>
-      <p>{text}</p>
+      <section>
+        <p>{text}</p>
+        <Styled.Links>
+          <MyLink href='Home' />
+          <MyLink href='Upload' />
+        </Styled.Links>
+      </section>
     </Styled.Container>
   )
 }
