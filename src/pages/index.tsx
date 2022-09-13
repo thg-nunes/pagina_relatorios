@@ -50,6 +50,8 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       ...response
-    }
+    },
+    // esse revalidate vai gerar paginas totalmente do zero somente a cada uma semana
+    revalidate: 60 * 60 * 24 * 7 // 1 semana
   }
 }
