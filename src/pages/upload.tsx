@@ -10,7 +10,7 @@ export default function Upload() {
     if(files.length) {
       files.forEach(async (file) => {
         const formData = new FormData()
-        formData.append('new_report', file)
+        formData.append('report_files', file)
 
         await api.post('/relatorio', formData, {
           headers: {
