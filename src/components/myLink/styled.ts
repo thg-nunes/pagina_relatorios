@@ -5,4 +5,9 @@ export const Container = styled.a`
   color: white;
   font-weight: bold;
   padding: 0 ${({theme}) => theme.spacings[5]};
+  transition: 250ms all ease-in-out;
+
+  :hover {
+    background: #3a86ff;
+  }
 `
