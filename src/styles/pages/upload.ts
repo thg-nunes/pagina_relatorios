@@ -3,9 +3,11 @@ import styled from "styled-components";
 export const Container = styled.div`
   margin: 0 auto;
   max-width: 1280px;
+  height: calc(100vh - 3.5rem);
   display: flex;
   padding: ${({theme}) => theme.spacings["5"]} 0;
   gap: 1rem;
+  position:  relative;
 `
 
 export const UploadFileInput = styled.section`
@@ -51,4 +53,12 @@ export const SubmitButton = styled.section`
       filter: brightness(.95);
     }
   }
+`
+
+export const DragAndDropContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `
