@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next"
+import { GetServerSideProps } from "next"
 import { FiltersCreate } from "../client/filtersCreate"
 import { Report } from "../components/report"
 import { useMyContextFilters } from "../hooks/contexts/useMyContextFilters"
@@ -38,7 +38,7 @@ const Home = (response: Response) => {
 
 export default Home
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const date = new Date()
 
   const response = await api.get<Response>('/relatorios', {
@@ -51,7 +51,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       ...response
     },
-    // esse revalidate vai gerar paginas totalmente do zero somente a cada uma semana
-    revalidate: 60 * 60 * 24 * 7 // 1 semana
   }
 }
