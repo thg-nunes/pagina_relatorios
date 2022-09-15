@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  front-relatorios:
+    image: jucema/relatorios_frontend
+    container_name: relatorios_frontend
+    restart: unless-stopped
+    build:
+      network: host
+      context: .
+    ports:
+      - '8081:8081'
+  
+  backend-relatorios:
+    image: jucema/relatorios_backend
+    container_name: relatorios_backend
+    restart: unless-stopped
+    environment:
+      - PUBLIC_IP=$PUBLIC_IP
+    build:
+      network: host
+      context: ../backend_relatorios
+    volumes:
+      - $REPORTS_PATH:/app/data
+    ports:
+      - '8001:8001'
