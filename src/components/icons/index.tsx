@@ -21,8 +21,8 @@ export const Container = styled.span`
 export const Icon = ({ altImage, srcImage, fileId }: IconProps) => {
   return (
     <Container>
-      <Image src={srcImage} alt={altImage} width='25px' height='25px' onClick={() => {
-        window.open(`http://localhost:8000/relatorio/${fileId}`)
+      <Image src={srcImage} alt={altImage} width='28px' height='28px' onClick={() => {
+        window.open(`${process.env.URL_API}/relatorio/${fileId}`)
       }} />
     </Container>
   )
