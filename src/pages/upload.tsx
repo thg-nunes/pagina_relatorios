@@ -14,6 +14,7 @@ export default function Upload() {
 
         await api.post('/relatorio', formData, {
           headers: {
+            'Access-Control-Allow-Origin': '*',
             'Content-Type': 'multipart/form-data'
           }
         })
