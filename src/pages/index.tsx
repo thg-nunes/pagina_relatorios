@@ -31,7 +31,7 @@ export default function Home(){
   
       setData(response.data)
     }
-    console.log(state.searchByMonthOrYear)
+    
     fetchData()
   }, [])
 

@@ -12,7 +12,6 @@ export const Header = ({text}: HeaderProps) => {
         <p>{text}</p>
         <Styled.Links>
           <MyLink href='Home' />
-          <MyLink href='Upload' />
         </Styled.Links>
       </section>
     </Styled.Container>
