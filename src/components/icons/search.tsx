@@ -48,6 +48,7 @@ export const SearchReport = ({ altImage, srcImage, onSearchReports }: IconProps)
         }
       }).then(res => {
         const { data } = res.data
+        console.log(data)
         context.dispatch({type: 'SEARCH_REPORT', payload: { data } })
       })
     } catch (err) {

@@ -8,7 +8,6 @@ type FilterProps = {
 }
 
 export const Filter = ({ labelId, labelText }: FilterProps) => {
-
   const context = useMyContextFilters()
   const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 

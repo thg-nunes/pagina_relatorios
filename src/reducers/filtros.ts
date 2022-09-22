@@ -1,15 +1,15 @@
-type ReducerFilterProps = {
-  state: {
-    month: null,
-    year: number,
-    searchByMonthOrYear: null
-  },
-  action: {
-    type: string,
-    payload: any
-  }
+type ReducerState = {
+  month: null,
+  year: number,
+  searchByMonthOrYear: null
 }
-export const reducerFilter = ({state, action}: ReducerFilterProps) => {
+
+type ReducerAction = {
+  type: string,
+  payload: any
+}
+
+export const reducerFilter = (state: ReducerState, action: ReducerAction) => {
   switch (action.type) {
     case 'SET_YEAR':
       return { ...state, year: action.payload.year }
