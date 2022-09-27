@@ -18,6 +18,7 @@ type Response = {
 export default function Home(){
   const { state } = useMyContextFilters()
   const [data, setData] = useState<ReportsFiles>([])
+  const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
   useEffect(() => {
     async function fetchData(){
@@ -34,6 +35,14 @@ export default function Home(){
 
     fetchData()
   }, [])
+
+  if(data.length){
+    months.forEach((month, monthIndex) => {
+      data.forEach(file => {
+        file.file = file.file.replace(month, `${monthIndex + 1 < 10 ? '0' : ''}${monthIndex+1}/`)
+      })
+    })
+  }
 
   return (
     <>
