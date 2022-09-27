@@ -12,9 +12,8 @@ export const Container = styled.div`
     width: 95%;
     max-width: 1280px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    text-align: center;
+
     p {
       color: white;
       font-size: ${({theme}) => theme.font.sizes['1.5']};
@@ -44,6 +43,3 @@ export const Container = styled.div`
   }
 `
 
-export const Links = styled.section`
-  display: flex;
-`

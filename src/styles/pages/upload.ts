@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 90%;
   height: calc(100vh - 3.5rem);
   display: flex;
   padding: ${({theme}) => theme.spacings["5"]} 0;

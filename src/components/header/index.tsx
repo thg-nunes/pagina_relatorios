@@ -12,12 +12,9 @@ export const Header = ({text}: HeaderProps) => {
 
   return (
     <Styled.Container>
-        {pathname !== '/login'&& (
+        {pathname !== '/login' && (
           <section>
             <p>{text}</p>
-            <Styled.Links>
-              <MyLink href='Home' />
-            </Styled.Links>
           </section>
         )}
     </Styled.Container>
