@@ -7,9 +7,9 @@ type ReportProps = {
 }
 
 export const Report = ({ textReport, fileId }: ReportProps) => {
-  const removeingSpecialCharacters = textReport.replace(/[_.pdf0-9]/g, ' ')
+  const removeingSpecialCharacters = textReport.replace(/[_.pdf]/g, '')
   const replacesFirstLetterOfReportToUppercase = removeingSpecialCharacters.replace(/[`^r`]/i, 'R')
-  const replacesFirstLetterOfEstatisticaToUppercase = replacesFirstLetterOfReportToUppercase.replace('estatistica', 'Estatistica')
+  const replacesFirstLetterOfEstatisticaToUppercase = replacesFirstLetterOfReportToUppercase.replace('estatistica', ' Estatistico - ')
 
   const textTreatyReport = replacesFirstLetterOfEstatisticaToUppercase
 
