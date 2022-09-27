@@ -22,16 +22,16 @@ export default function Home(){
   useEffect(() => {
     async function fetchData(){
       const date = new Date()
-  
+
       const response = await api.get<Response>('/relatorios', {
         params: {
           year: date.getFullYear()
         }
       }).then(res => res.data)
-  
+
       setData(response.data)
     }
-    
+
     fetchData()
   }, [])
 
@@ -39,7 +39,7 @@ export default function Home(){
     <>
       <FiltersCreate />
 
-      {state.searchByMonthOrYear !== null ? (
+      {state.searchByMonthOrYear !== null && typeof state.searchByMonthOrYear !==  'string' ? (
         <Report textReport={state.searchByMonthOrYear![0].file} fileId={state.searchByMonthOrYear[0].id} />
       ) : (
         <Styled.Container>
