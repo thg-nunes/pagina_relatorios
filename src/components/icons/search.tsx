@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { useState } from "react";
+import { useRouter } from "next/router";
 
 import styled from 'styled-components';
 import { useMyContextFilters } from "../../hooks/contexts/useMyContextFilters";
@@ -32,28 +32,27 @@ export const Container = styled.span`
       filter: brightness(.95);
     }
   }
-
 `
 
 export const SearchReport = ({ altImage, srcImage, onSearchReports }: IconProps) => {
 
   const context = useMyContextFilters()
+  const { push } = useRouter()
 
   async function getReportBYYearAndMonth() {
-    try {
-      await api.get<AxiosResponseProps>('/relatorios', {
-        params: {
-          year: onSearchReports.year,
-          month: onSearchReports.month
-        }
-      }).then(res => {
-        const { data } = res.data
-        console.log(data)
-        context.dispatch({type: 'SEARCH_REPORT', payload: { data } })
-      })
-    } catch (err) {
-      console.log(err)
+    const response = await api.get<AxiosResponseProps>('/relatorios', {
+      params: {
+        year: onSearchReports.year,
+        month: onSearchReports.month
+      }
+    })
+
+    if(response) {
+      const { data } = response.data
+      context.dispatch({type: 'SEARCH_REPORT', payload: { data } })
     }
+
+    push('/notfoundreport')
   }
 
   return (
