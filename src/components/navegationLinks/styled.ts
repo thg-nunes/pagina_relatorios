@@ -12,7 +12,7 @@ export const Container = styled.div<ContainerProps>`
 
   display: ${({ asPath }) => {
     if(asPath === '/login') return 'none'
-    return 'block'
+    return 'flex'
   }};
 
   flex-direction: column;

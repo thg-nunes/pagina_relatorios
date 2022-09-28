@@ -19,8 +19,8 @@ import * as Styled from './styled'
             <Image src='/icons/upload-button.svg' alt='botão para ir à página de upload' width={25} height={25} />
           </a>
         </Link>
-      <Image src='/icons/signout-button.svg' alt='botão para deslogar do sistema' width={25} height={25} />
       </section>
+      <Image src='/icons/signout-button.svg' alt='botão para deslogar do sistema' width={25} height={25} />
     </Styled.Container>
   )
 }
