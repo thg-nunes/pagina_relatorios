@@ -9,7 +9,10 @@ export default function Login() {
         <Styled.InputContainer>
           <MyInput type='text' placeholder='User' />
           <MyInput type='password' placeholder='Senha' />
-          <button>Enviar</button>
+          <button onClick={(e) => {
+            e.preventDefault()
+            // implementar a logica do login aqui
+          }}>Enviar</button>
         </Styled.InputContainer>
       </Styled.Form>
     </Styled.Container>
