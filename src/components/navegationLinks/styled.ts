@@ -1,12 +1,20 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+type ContainerProps = {
+  asPath: string
+}
+
+export const Container = styled.div<ContainerProps>`
   position: absolute;
 
   width: max-content;
   height: calc(100vh - 3rem);
 
-  display: flex;
+  display: ${({ asPath }) => {
+    if(asPath === '/login') return 'none'
+    return 'block'
+  }};
+
   flex-direction: column;
   justify-content: space-between;
 
