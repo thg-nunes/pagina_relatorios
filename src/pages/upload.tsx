@@ -32,6 +32,7 @@ export default function Upload() {
 
   return (
     <Styled.Container>
+      <h2>Envio de Arquivos</h2>
       <Styled.DragAndDropContainer>
         <DragAndDrop files={files} setFiles={setFiles}/>
 

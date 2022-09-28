@@ -5,9 +5,15 @@ export const Container = styled.div`
   max-width: 90%;
   height: calc(100vh - 3.5rem);
   display: flex;
-  padding: ${({theme}) => theme.spacings["5"]} 0;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  padding: ${({theme}) => theme.spacings["1.25"]} 0;
+  gap: 2rem;
   position:  relative;
+
+  h2 {
+    font-size: 2rem;
+  }
 `
 
 export const UploadFileInput = styled.section`
@@ -37,7 +43,7 @@ export const UploadFileInput = styled.section`
 
 export const SubmitButton = styled.section`
   input {
-    display: block;
+    position: absolute;
     width: 180px;
     text-align: center;
     padding: ${({theme}) => theme.spacings["5"]} 0;
@@ -45,7 +51,12 @@ export const SubmitButton = styled.section`
     color: white;
     font-weight: 600;
     cursor: pointer;
+
     border: none;
+    border-radius: 10px;
+
+    left: 50%;
+    transform: translateX(-50%);
 
     transition: 150ms all ease-in-out;
 
@@ -57,6 +68,7 @@ export const SubmitButton = styled.section`
 
 export const DragAndDropContainer = styled.div`
   width: 100%;
+  position: relative;
 
   display: flex;
   flex-direction: column;
