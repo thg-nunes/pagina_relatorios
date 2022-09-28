@@ -20,7 +20,18 @@ export const DragAndDrop = ({ files, setFiles }: DragAndDropProps) => {
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       {
-        isDragActive ? <Styled.Drop>Solte os arquivos aqui ou clique para selecionar</Styled.Drop> : files.length ? <Styled.Drop>Arquivos selecionados.</Styled.Drop> : <Styled.Drop>Solte os arquivos aqui ou clique para selecionar</Styled.Drop>
+        isDragActive ? (
+          <Styled.Drop>
+            <p>SArraste e solte os arquivos</p>
+          </Styled.Drop>
+        ) : files.length ? <Styled.Drop>Arquivos selecionados.</Styled.Drop> : (
+          <Styled.Drop>
+            <section>
+              <img src='/icons/upload-icon.svg' width='0' height='0' />
+              <p>Arraste e solte os arquivos</p>
+            </section>
+          </Styled.Drop>
+        )
       }
     </div>
   );
