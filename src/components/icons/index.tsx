@@ -1,7 +1,7 @@
 import Image from "next/image"
 import styled from 'styled-components';
 
-type IconProps = {
+type DownloadReportProps = {
   srcImage: string
   altImage: string
   fileId?: string
@@ -18,7 +18,7 @@ export const Container = styled.span`
   }
 `
 
-export const Icon = ({ altImage, srcImage, fileId }: IconProps) => {
+export const DownloadReport = ({ altImage, srcImage, fileId }: DownloadReportProps) => {
   return (
     <Container>
       <Image src={srcImage} alt={altImage} width='25px' height='25px' onClick={() => {
