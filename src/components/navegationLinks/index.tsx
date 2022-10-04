@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { signOut } from '../../contexts/authContext/authContext'
 import * as Styled from './styled'
 
  export const NavegationLinks = () => {
   const { asPath } = useRouter()
+  const { push } = useRouter()
 
   return (
     <Styled.Container asPath={asPath}>
@@ -20,7 +22,18 @@ import * as Styled from './styled'
           </a>
         </Link>
       </section>
-      <Image src='/icons/signout-button.svg' alt='botão para deslogar do sistema' width={25} height={25} />
+      <Image
+        src='/icons/signout-button.svg'
+        alt='botão para deslogar do sistema'
+        width={25}
+        height={25}
+        style={{
+          cursor: 'pointer'
+        }}
+        onClick={() => {
+          signOut()
+        }}
+      />
     </Styled.Container>
   )
 }
