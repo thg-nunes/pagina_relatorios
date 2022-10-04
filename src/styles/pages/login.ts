@@ -33,18 +33,7 @@ export const Form = styled.form`
     margin-bottom: 3rem;
   }
 
-`
-
-export const InputContainer = styled.section`
-  height: 50%;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  gap: 2.5rem;
-
-  button {
+  > button {
     width: 100%;
     max-width: 12.25rem;
 
@@ -56,9 +45,24 @@ export const InputContainer = styled.section`
     border-radius: 5px;
 
     color: white;
+    transition: 200ms all ease-in-out;
 
     background: ${({theme}) => theme.colors.blue[600]};
+
+    :hover {
+      filter: brightness(.9);
+    }
   }
+`
+
+export const InputContainer = styled.section`
+  height: 50%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  gap: 2.5rem;
 `
 
 export const Input = styled.input`
