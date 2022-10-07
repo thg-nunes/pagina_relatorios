@@ -6,7 +6,6 @@ import * as Styled from './styled'
 
  export const NavegationLinks = () => {
   const { asPath } = useRouter()
-  const { push } = useRouter()
 
   return (
     <Styled.Container asPath={asPath}>
