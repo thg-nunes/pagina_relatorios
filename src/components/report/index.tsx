@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { api } from '../../services/axios'
 import { DownloadReport } from '../icons'
 import * as Styled from './styled'
 
@@ -11,17 +12,27 @@ export const Report = ({ textReport, fileId }: ReportProps) => {
   const removeingSpecialCharacters = textReport.replace(/[_.pdf]/g, '')
   const replacesFirstLetterOfReportToUppercase = removeingSpecialCharacters.replace(/[`^r`]/i, 'R')
   const replacesFirstLetterOfEstatisticaToUppercase = replacesFirstLetterOfReportToUppercase.replace('estatistica', ' Estatistico - ')
-
   const textTreatyReport = replacesFirstLetterOfEstatisticaToUppercase
+
+  async function deleteReport(): Promise<void> {
+    await api.delete(`/relatorio`, {
+      params: {
+        file_id: fileId
+      },
+    })
+  }
 
   return (
     <Styled.Container>
       <span>
         <p>{textTreatyReport}</p>
         <Styled.Icons>
-          <Image width='25px' height='25px' src='/icons/btn-delete.svg' alt='botao para deletar relatorio' onClick={() => {
-            // executar de forma assincrona a deleção do arquivo com o fileId
-          }} />
+          <Image
+            width='25px' height='25px'
+            src='/icons/btn-delete.svg'
+            alt='botao para deletar relatorio'
+            onClick={() => deleteReport()}
+          />
           <DownloadReport srcImage='/icons/btn-download.svg' altImage='botao para baixar relatorio' fileId={fileId} />
         </Styled.Icons>
       </span>
