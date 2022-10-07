@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import { DragAndDrop } from "../components/dragAndDrop";
+import { AuthContext } from "../contexts/authContext/authContext";
 import { api } from "../services/axios";
 import * as Styled from '../styles/pages/upload'
 
 export default function Upload() {
   const [files, setFiles] = useState<File[]>([])
+  const { role, isAuthenticated } = useContext(AuthContext)
+  const { push } = useRouter()
 
   async function handleSendFile() {
     if(files.length) {
@@ -29,6 +33,12 @@ export default function Upload() {
       })
     }
   }
+
+  useEffect(() => {
+    if(role !== 'admin' || !isAuthenticated) {
+      push('/reports')
+    }
+  }, [])
 
   return (
     <Styled.Container>

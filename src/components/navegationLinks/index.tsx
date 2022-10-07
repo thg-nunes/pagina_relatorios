@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { signOut } from '../../contexts/authContext/authContext'
+import { useContext } from 'react'
+import { AuthContext, signOut } from '../../contexts/authContext/authContext'
 import * as Styled from './styled'
 
  export const NavegationLinks = () => {
   const { asPath } = useRouter()
+  const { role } = useContext(AuthContext)
 
   return (
     <Styled.Container asPath={asPath}>
@@ -15,11 +17,13 @@ import * as Styled from './styled'
             <Image src='/icons/home-button.svg' alt='botão para voltar à página  inicial' width={25} height={25} />
           </a>
         </Link>
-        <Link href='/upload'>
-          <a>
-            <Image src='/icons/upload-button.svg' alt='botão para ir à página de upload' width={25} height={25} />
-          </a>
-        </Link>
+        {role === 'admin' && (
+          <Link href='/upload'>
+            <a>
+              <Image src='/icons/upload-button.svg' alt='botão para ir à página de upload' width={25} height={25} />
+            </a>
+          </Link>
+        )}
       </section>
       <Image
         src='/icons/signout-button.svg'
