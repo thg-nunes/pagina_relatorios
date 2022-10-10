@@ -10,4 +10,8 @@ export const Container = styled.main`
   border-radius: 10px;
 
   box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `
