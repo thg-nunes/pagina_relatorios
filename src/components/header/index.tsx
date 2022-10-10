@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { MyLink } from '../myLink'
 import * as Styled from './styled'
 
 type HeaderProps = {

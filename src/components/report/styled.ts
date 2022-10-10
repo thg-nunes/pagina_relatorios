@@ -12,6 +12,12 @@ export const Container = styled.div`
 
     padding: ${({theme}) => theme.spacings[5]} ${({theme}) => theme.spacings[75]};
   }
+
+  @media (max-width: 768px) {
+    span {
+      padding: .45rem;
+    }
+  }
 `
 
 export const Icons = styled.section`
@@ -20,12 +26,24 @@ export const Icons = styled.section`
   align-items: center;
   justify-content: space-around;
 
+  img {
+    width: 25px;
+    height: 25px;
+  }
+
   @media (max-width: 1024px) {
     width: 80px;
   }
 
   @media (max-width: 768px) {
     width: 75px;
+
+    span {
+      img {
+        width: 18px;
+        height: 18px;
+      }
+    }
   }
 
 `

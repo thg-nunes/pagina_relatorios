@@ -14,22 +14,20 @@ import * as Styled from './styled'
       <section>
         <Link href='/reports'>
           <a>
-            <Image src='/icons/home-button.svg' alt='botão para voltar à página  inicial' width={25} height={25} />
+            <img className='icon' src='/icons/home-button.svg' alt='botão para voltar à página  inicial' />
           </a>
         </Link>
         {role === 'admin' && (
           <Link href='/upload'>
             <a>
-              <Image src='/icons/upload-button.svg' alt='botão para ir à página de upload' width={25} height={25} />
+              <img src='/icons/upload-button.svg' alt='botão para ir à página de upload' />
             </a>
           </Link>
         )}
       </section>
-      <Image
+      <img
         src='/icons/signout-button.svg'
         alt='botão para deslogar do sistema'
-        width={25}
-        height={25}
         style={{
           cursor: 'pointer'
         }}

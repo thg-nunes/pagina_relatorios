@@ -31,8 +31,7 @@ export const Report = ({ textReport, fileId }: ReportProps) => {
         <p>{textTreatyReport}</p>
         <Styled.Icons>
           {role === 'admin' && (
-            <Image
-              width='25px' height='25px'
+            <img
               src='/icons/btn-delete.svg'
               alt='botao para deletar relatorio'
               onClick={() => deleteReport()}
