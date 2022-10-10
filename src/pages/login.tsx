@@ -1,19 +1,27 @@
-import { FormEvent, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
+import { FormEvent, useContext, useEffect, useState } from 'react'
 
 import { AuthContext } from '../contexts/authContext/authContext'
 import * as Styled from '../styles/pages/login'
 
 export default function Login() {
 
-  const { sign } = useContext(AuthContext)
+  const { sign, isAuthenticated } = useContext(AuthContext)
   const [ username, setUserName ] = useState<string>('')
   const [ password, setPassword ] = useState<string>('')
+  const { push } = useRouter()
 
   async function handleSubmit(e:FormEvent) {
     e.preventDefault()
 
     await sign({ username, password })
   }
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      push('/reports')
+    }
+  }, [isAuthenticated])
 
   return (
     <Styled.Container>

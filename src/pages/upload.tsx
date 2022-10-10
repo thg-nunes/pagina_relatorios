@@ -8,7 +8,6 @@ import * as Styled from '../styles/pages/upload'
 export default function Upload() {
   const [files, setFiles] = useState<File[]>([])
   const { role, isAuthenticated } = useContext(AuthContext)
-  const { push } = useRouter()
 
   async function handleSendFile() {
     if(files.length) {
@@ -27,7 +26,6 @@ export default function Upload() {
           setFiles([])
         })
         .catch((err) => {
-          console.log(err)
           alert('Falha ao enviar os arquivos.')
         })
       })
@@ -35,24 +33,27 @@ export default function Upload() {
   }
 
   useEffect(() => {
-    if(role !== 'admin' || !isAuthenticated) {
-      push('/reports')
+    if(isAuthenticated && role === 'admin') {
+      return
     }
-  }, [])
+  }, [role, isAuthenticated])
 
   return (
     <Styled.Container>
-      <h2>Envio de Arquivos</h2>
-      <Styled.DragAndDropContainer>
-        <DragAndDrop files={files} setFiles={setFiles}/>
+      {role === 'admin' && (
+        <>
+          <h2>Envio de Arquivos</h2>
+          <Styled.DragAndDropContainer>
+            <DragAndDrop files={files} setFiles={setFiles}/>
 
-        <Styled.SubmitButton>
-          <input type="submit" value="Enviar" onClick={async () => {
-            await handleSendFile()
-          }}/>
-        </Styled.SubmitButton>
-      </Styled.DragAndDropContainer>
-
+            <Styled.SubmitButton>
+              <input type="submit" value="Enviar" onClick={async () => {
+                await handleSendFile()
+              }}/>
+            </Styled.SubmitButton>
+          </Styled.DragAndDropContainer>
+        </>
+      )}
     </Styled.Container>
   )
 }

@@ -22,27 +22,27 @@ export default function Reports() {
   const [data, setData] = useState<ReportsFiles>([])
   const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
   const { isAuthenticated } = useContext(AuthContext)
-
   const { push } = useRouter()
 
   useEffect(() => {
     async function fetchData(){
       const date = new Date()
 
-      if(!isAuthenticated) {
-        push('/login')
-      } else {
-        const response = await api.get<Response>(`/relatorio/all?year=${state.year}`, {
-          params: {
-            year: date.getFullYear()
-          }
-        }).then(res => res.data)
+      const response = await api.get<Response>(`/relatorio/all?year=${state.year}`, {
+        params: {
+          year: date.getFullYear()
+        }
+      }).then(res => res.data)
 
-        setData(response.data)
-      }
+      setData(response.data)
     }
-    fetchData()
-  }, [])
+
+    if(isAuthenticated) {
+      fetchData()
+    } else {
+      push('/login')
+    }
+  }, [isAuthenticated])
 
   if(data.length){
     months.forEach((month, monthIndex) => {
