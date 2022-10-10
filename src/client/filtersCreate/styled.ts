@@ -9,6 +9,11 @@ export const Container = styled.div`
 
   padding: ${({theme}) => theme.spacings[75]} 0;
 
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+
+
   @media (max-width: 540px) {
     max-width: 500px;
     display: block;
