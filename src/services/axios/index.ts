@@ -23,10 +23,9 @@ api.interceptors.response.use((response) => {
   return response
 }, (err: AxiosError) => {
   if(err.response?.status === 401) {
-    const cookies = parseCookies()
     // se tiver refreshToken nos cookies, recupero aqui
     const { 'relatorio.refresh_token': refreshToken } = cookies
-    const requestConfig = err.config
+      const requestConfig = err.config
 
     // linhas 26 e 27: essa estrategia é utilizada para que o codigo de refreshToken seja executado somente na primeira ver em que houver um erro
     if(!isRefreshing) {
@@ -40,11 +39,10 @@ api.interceptors.response.use((response) => {
       })
       .then(response => {
       // com a response de token e refreshToken atualizados, recupero-os aqui
-      const { access_token, refresh_token } = response.data
+      const { access_token } = response.data
 
         // atualizo o cookie com o novo token e refreshToken
         setCookie(undefined, 'relatorio.token', access_token)
-        setCookie(undefined, 'relatorio.refresh_token', refresh_token)
 
         // atualizo o header default com o novo token
         api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`
@@ -59,8 +57,6 @@ api.interceptors.response.use((response) => {
       .finally(() => {
         isRefreshing = false
       })
-
-      signOut()
     }
 
     return new Promise((resolve, reject) => {
