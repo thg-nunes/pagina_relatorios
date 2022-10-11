@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { parseCookies, setCookie } from 'nookies'
-import { signOut } from "../../contexts/authContext/authContext";
+import { signOut } from "../../hooks/signOut";
 
 type FaileruRequest = {
   onSuccess: (token: string) => void,
