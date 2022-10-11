@@ -12,7 +12,6 @@ type AuthCredentials = {
 
 type AuthContextData = {
   sign(credentials: AuthCredentials): Promise<void>
-  isAuthenticated: boolean
   role: string
 }
 
@@ -31,16 +30,8 @@ type AuthProviderProps = {
 }
 
 export const AuthProvider = ({children}: AuthProviderProps) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [role, setRole] = useState('user')
 
-  useEffect(() => {
-    // fazer requisição pra rota de buscar os dados de usuario e atualizar enviando o token
-    /* setar valor da nova requisição - */setIsAuthenticated(true)
-    // setar valor da nova requisição - setRole(role)
-  }, [])
-
-  // essa funcao é usada para fazer login, onde envio os dados necessarios para a api
   async function sign({ username, password }:AuthCredentials) {
     const dataForm = stringify({
       username,
@@ -72,6 +63,6 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
 
   return (
     // aqui crio um metodo para prover a funcao de sign para usa-la onde for necessaria
-    <AuthContext.Provider value={{ sign, isAuthenticated, role }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ sign, role }}>{children}</AuthContext.Provider>
   )
 }
