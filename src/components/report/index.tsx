@@ -1,6 +1,3 @@
-import Image from 'next/image'
-import { useContext } from 'react'
-import { AuthContext } from '../../contexts/authContext/authContext'
 import { api } from '../../services/axios'
 import { DownloadReport } from '../icons'
 import * as Styled from './styled'
@@ -15,7 +12,7 @@ export const Report = ({ textReport, fileId }: ReportProps) => {
   const replacesFirstLetterOfReportToUppercase = removeingSpecialCharacters.replace(/[`^r`]/i, 'R')
   const replacesFirstLetterOfEstatisticaToUppercase = replacesFirstLetterOfReportToUppercase.replace('estatistica', ' Estatistico - ')
   const textTreatyReport = replacesFirstLetterOfEstatisticaToUppercase
-  const { role } = useContext(AuthContext)
+  const role = localStorage.getItem('relatorio.role')
 
   async function deleteReport(): Promise<void> {
     await api.delete(`/relatorio`, {

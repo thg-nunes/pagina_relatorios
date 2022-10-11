@@ -8,9 +8,10 @@ import * as Styled from '../styles/pages/upload'
 
 export default function Upload() {
   const [files, setFiles] = useState<File[]>([])
-  const { role } = useContext(AuthContext)
-  const cookies = parseCookies()
+  const [role, setRole] = useState('')
   const { push } = useRouter()
+
+  const cookies = parseCookies()
 
   async function handleSendFile() {
     if(files.length) {
@@ -36,6 +37,9 @@ export default function Upload() {
   }
 
   useEffect(() => {
+    const role = localStorage.getItem('relatorio.role')
+    setRole(role!)
+
     if(cookies['relatorio.token'] && role === 'admin') {
       return
     }
@@ -47,7 +51,7 @@ export default function Upload() {
     if(!cookies['relatorio.token']) {
       push('/login')
     }
-  }, [role])
+  }, [])
 
   return (
     <Styled.Container>
