@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
-import React, { useState, useEffect, useContext } from 'react';
+import { parseCookies } from 'nookies';
+import React, { useState, useEffect } from 'react';
 import { FiltersCreate } from "../client/filtersCreate"
 import { Report } from "../components/report"
-import { AuthContext } from '../contexts/authContext/authContext';
 import { useMyContextFilters } from "../hooks/contexts/useMyContextFilters"
 import { api } from "../services/axios"
 import * as Styled from '../styles/pages'
@@ -21,8 +21,8 @@ export default function Reports() {
   const { state } = useMyContextFilters()
   const [data, setData] = useState<ReportsFiles>([])
   const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-  const { isAuthenticated } = useContext(AuthContext)
   const { push } = useRouter()
+  const cookies = parseCookies()
 
   useEffect(() => {
     async function fetchData(){
@@ -37,12 +37,12 @@ export default function Reports() {
       setData(response.data)
     }
 
-    if(isAuthenticated) {
+    if(cookies['relatorio.token']) {
       fetchData()
     } else {
       push('/login')
     }
-  }, [isAuthenticated])
+  }, [])
 
   if(data.length){
     months.forEach((month, monthIndex) => {

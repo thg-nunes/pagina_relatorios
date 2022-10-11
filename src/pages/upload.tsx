@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { parseCookies } from "nookies";
 import { useContext, useEffect, useState } from "react";
 import { DragAndDrop } from "../components/dragAndDrop";
 import { AuthContext } from "../contexts/authContext/authContext";
@@ -7,7 +8,9 @@ import * as Styled from '../styles/pages/upload'
 
 export default function Upload() {
   const [files, setFiles] = useState<File[]>([])
-  const { role, isAuthenticated } = useContext(AuthContext)
+  const { role } = useContext(AuthContext)
+  const cookies = parseCookies()
+  const { push } = useRouter()
 
   async function handleSendFile() {
     if(files.length) {
@@ -33,10 +36,18 @@ export default function Upload() {
   }
 
   useEffect(() => {
-    if(isAuthenticated && role === 'admin') {
+    if(cookies['relatorio.token'] && role === 'admin') {
       return
     }
-  }, [role, isAuthenticated])
+
+    if(cookies['relatorio.token'] && role !== 'admin') {
+      push('/reports')
+    }
+
+    if(!cookies['relatorio.token']) {
+      push('/login')
+    }
+  }, [role])
 
   return (
     <Styled.Container>
