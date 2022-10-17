@@ -1,18 +1,10 @@
-import Router from "next/router"
 import { stringify } from "qs"
-import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react"
+import Router from "next/router"
+import { createContext, useEffect } from "react"
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
 
 import { api } from "../../services/axios"
-
-type AuthCredentials = {
-  username: string
-  password: string
-}
-
-type AuthContextData = {
-  sign(credentials: AuthCredentials, setHaveError: Dispatch<SetStateAction<boolean>>): Promise<void>
-}
+import axios, { AxiosDefaults } from "axios"
 
 // aqui fica a config ao sair do sistema, onde token e refresh_token sao deletados dos cookies, e o usuario é redirecionado para a pagina de login
 export const signOut = () => {
@@ -22,13 +14,9 @@ export const signOut = () => {
   Router.push('/login')
 }
 
-export const AuthContext = createContext({} as AuthContextData)
+export const AuthContext = createContext({})
 
-type AuthProviderProps = {
-  children: ReactNode
-}
-
-export const AuthProvider = ({children}: AuthProviderProps) => {
+export const AuthProvider = ({children}) => {
 
   useEffect(() => {
     const role = localStorage.getItem('relatorio.role')
@@ -39,7 +27,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
     }
   }, [])
 
-  async function sign({ username, password }:AuthCredentials, setHaveError: Dispatch<SetStateAction<boolean>>) {
+  async function sign({ username, password }, setHaveError) {
     const dataForm = stringify({
       username,
       password
@@ -60,7 +48,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
       localStorage.setItem('relatorio.role', role)
 
       // o Authorization foi adicionado no headers na config criada no diretorio /services/axios/index
-      api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`
+      api.defaults.headers['Authorization'] = `Bearer ${access_token}`
 
       Router.push('/reports')
     } catch (error) {

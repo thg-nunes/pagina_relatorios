@@ -1,19 +1,10 @@
-import axios, { AxiosError, HeadersDefaults } from "axios";
+import axios, { AxiosError } from "axios";
 import { parseCookies, setCookie } from 'nookies'
 import { signOut } from "../../hooks/signOut";
 
-type FaileruRequest = {
-  onSuccess: (token: string) => void,
-  onFailure: (err: AxiosError) => void,
-}
-
-interface HeaderDefault extends HeadersDefaults {
-  Authorization: string
-}
-
 const cookies = parseCookies()
 let isRefreshing = false
-let faileruRequest: FaileruRequest[] = []
+let faileruRequest = []
 
 const api = axios.create({
   // baseURL: `http://${process.env.NEXT_PUBLIC_API_HOST}:8001`,
@@ -25,7 +16,7 @@ const api = axios.create({
 
 api.interceptors.response.use((response) => {
   return response
-}, (err: AxiosError) => {
+}, (err) => {
   if(err.response?.status === 401) {
     // se tiver refreshToken nos cookies, recupero aqui
     const { 'relatorio.refresh_token': refreshToken } = cookies
@@ -66,13 +57,13 @@ api.interceptors.response.use((response) => {
     return new Promise((resolve, reject) => {
       faileruRequest.push({
         // caso uma requisição falhe, vou refaze-la com o novo token
-        onSuccess: (token: string) => {
-          requestConfig.headers!['Authorization'] = `Bearer ${token}`
+        onSuccess: (token) => {
+          requestConfig.headers['Authorization'] = `Bearer ${token}`
 
           resolve(api(requestConfig))
         },
         // caso falhe com o novo token, somente rejeito
-        onFailure: (err: AxiosError) => {
+        onFailure: (err) => {
           reject(err)
         }
       })
