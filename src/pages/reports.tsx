@@ -28,7 +28,7 @@ export default function Reports() {
     async function fetchData(){
       const date = new Date()
 
-      const response = await api.get<Response>(`/relatorio/all?year=${state.year}`, {
+      const response = await api.get<Response>(`/relatorio/all`, {
         params: {
           year: date.getFullYear()
         }
