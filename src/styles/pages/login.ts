@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: relative;
   height: calc(100vh - 3rem);
+  overflow: hidden;
   background: ${({theme}) => theme.colors.blue[600]};
 `
 

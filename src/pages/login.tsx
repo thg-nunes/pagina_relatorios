@@ -27,8 +27,6 @@ export default function Login() {
     }
   }, [cookies])
 
-  console.log(haveError)
-
   return (
     <Styled.Container>
       <Styled.Form onSubmit={handleSubmit}>

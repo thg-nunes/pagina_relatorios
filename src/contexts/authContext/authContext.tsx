@@ -64,7 +64,6 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
 
       Router.push('/reports')
     } catch (error) {
-      // se o login falhar, o usuario é redirecionado para a rota de login
       setHaveError(true)
 
       setTimeout(() => {
