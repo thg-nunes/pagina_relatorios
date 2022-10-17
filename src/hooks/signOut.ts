@@ -5,6 +5,7 @@ import { destroyCookie } from "nookies"
 export const signOut = async () => {
   destroyCookie(undefined, 'relatorio.token')
   destroyCookie(undefined, 'relatorio.refresh_token')
+  localStorage.clear()
 
   await Router.push('/login')
 }

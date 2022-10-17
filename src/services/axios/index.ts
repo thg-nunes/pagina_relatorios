@@ -1,10 +1,14 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, HeadersDefaults } from "axios";
 import { parseCookies, setCookie } from 'nookies'
 import { signOut } from "../../hooks/signOut";
 
 type FaileruRequest = {
   onSuccess: (token: string) => void,
   onFailure: (err: AxiosError) => void,
+}
+
+interface HeaderDefault extends HeadersDefaults {
+  Authorization: string
 }
 
 const cookies = parseCookies()
@@ -45,7 +49,7 @@ api.interceptors.response.use((response) => {
         setCookie(undefined, 'relatorio.token', access_token)
 
         // atualizo o header default com o novo token
-        api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`
+        api.defaults.headers['Authorization'] = `Bearer ${access_token}`
 
         faileruRequest.forEach(request => request.onSuccess(access_token))
         faileruRequest = []
