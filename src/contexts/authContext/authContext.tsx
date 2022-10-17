@@ -1,6 +1,6 @@
 import Router from "next/router"
 import { stringify } from "qs"
-import { createContext, ReactNode, useEffect, useState } from "react"
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react"
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
 
 import { api } from "../../services/axios"
@@ -11,7 +11,7 @@ type AuthCredentials = {
 }
 
 type AuthContextData = {
-  sign(credentials: AuthCredentials): Promise<void>
+  sign(credentials: AuthCredentials, setHaveError: Dispatch<SetStateAction<boolean>>): Promise<void>
 }
 
 // aqui fica a config ao sair do sistema, onde token e refresh_token sao deletados dos cookies, e o usuario é redirecionado para a pagina de login
@@ -39,7 +39,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
     }
   }, [])
 
-  async function sign({ username, password }:AuthCredentials) {
+  async function sign({ username, password }:AuthCredentials, setHaveError: Dispatch<SetStateAction<boolean>>) {
     const dataForm = stringify({
       username,
       password
@@ -60,12 +60,16 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
       localStorage.setItem('relatorio.role', role)
 
       // o Authorization foi adicionado no headers na config criada no diretorio /services/axios/index
-      api.defaults.headers['Authorization'] = `Bearer ${access_token}`
+      api.defaults.headers.common['Authorization'] = `Bearer ${access_token}`
 
       Router.push('/reports')
     } catch (error) {
       // se o login falhar, o usuario é redirecionado para a rota de login
-      signOut()
+      setHaveError(true)
+
+      setTimeout(() => {
+        setHaveError(false)
+      }, 3500)
     }
   }
 

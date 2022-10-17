@@ -1,22 +1,24 @@
 import { useRouter } from 'next/router'
 import { parseCookies } from 'nookies'
 import { FormEvent, useContext, useEffect, useState } from 'react'
+import { ErrorAlert } from '../components/dragAndDrop/alerts/error'
 
 import { AuthContext } from '../contexts/authContext/authContext'
 import * as Styled from '../styles/pages/login'
 
 export default function Login() {
+  const { push } = useRouter()
+  const cookies = parseCookies()
+  const [haveError, setHaveError] = useState(false)
 
   const { sign } = useContext(AuthContext)
   const [ username, setUserName ] = useState<string>('')
   const [ password, setPassword ] = useState<string>('')
-  const { push } = useRouter()
-  const cookies = parseCookies()
 
   async function handleSubmit(e:FormEvent) {
     e.preventDefault()
 
-    await sign({ username, password })
+    await sign({ username, password }, setHaveError)
   }
 
   useEffect(() => {
@@ -24,6 +26,8 @@ export default function Login() {
       push('/reports')
     }
   }, [cookies])
+
+  console.log(haveError)
 
   return (
     <Styled.Container>
@@ -35,6 +39,8 @@ export default function Login() {
         </Styled.InputContainer>
         <button type='submit'>Enviar</button>
       </Styled.Form>
+
+      {haveError && <ErrorAlert message='Email ou senha incorreta.' />}
     </Styled.Container>
   )
 }
