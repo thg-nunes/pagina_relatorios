@@ -23,8 +23,8 @@ export const Container = styled.div<ContainerProps>`
   z-index: 2;
 
   > img {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
   }
 
   section {
@@ -33,8 +33,8 @@ export const Container = styled.div<ContainerProps>`
     gap: 1.25rem;
 
     img {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.75rem;
+      height: 1.75rem;
     }
   }
 
