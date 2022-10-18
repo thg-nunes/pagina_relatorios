@@ -4,7 +4,6 @@ import { createContext, useEffect } from "react"
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
 
 import { api } from "../../services/axios"
-import axios, { AxiosDefaults } from "axios"
 
 // aqui fica a config ao sair do sistema, onde token e refresh_token sao deletados dos cookies, e o usuario é redirecionado para a pagina de login
 export const signOut = () => {
@@ -14,7 +13,7 @@ export const signOut = () => {
   Router.push('/login')
 }
 
-export const AuthContext = createContext({})
+export const AuthContext = createContext()
 
 export const AuthProvider = ({children}) => {
 

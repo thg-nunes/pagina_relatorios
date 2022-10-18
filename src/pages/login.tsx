@@ -11,14 +11,14 @@ export default function Login() {
   const cookies = parseCookies()
   const [haveError, setHaveError] = useState(false)
 
-  const { sign } = useContext(AuthContext)
+  const context = useContext(AuthContext)
   const [ username, setUserName ] = useState<string>('')
   const [ password, setPassword ] = useState<string>('')
 
   async function handleSubmit(e:FormEvent) {
     e.preventDefault()
 
-    await sign({ username, password }, setHaveError)
+    await context.sign({ username, password }, setHaveError)
   }
 
   useEffect(() => {
