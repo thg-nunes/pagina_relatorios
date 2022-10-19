@@ -22,9 +22,17 @@ export const DragAndDrop = ({ files, setFiles }: DragAndDropProps) => {
       {
         isDragActive ? (
           <Styled.Drop>
-            <p>SArraste e solte os arquivos</p>
+            <p>Arraste e solte os arquivos</p>
           </Styled.Drop>
-        ) : files.length ? <Styled.Drop>Arquivos selecionados.</Styled.Drop> : (
+        ) : files.length ? (
+          <Styled.Drop>
+            {files.length && (
+              files.map(file => (
+                <p key={file.name}>{file.name}</p>
+              ))
+            )}
+          </Styled.Drop>
+          ) : (
           <Styled.Drop>
             <section>
               <img src='/icons/upload-icon.svg' width='0' height='0' />

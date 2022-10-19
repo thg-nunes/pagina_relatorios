@@ -17,7 +17,7 @@ export const Drop = styled.div`
   }
 
   section {
-    height: 70vh;
+    height: 50vh;
 
     display: flex;
     flex-direction: column;
@@ -28,8 +28,9 @@ export const Drop = styled.div`
   }
 
   p {
-    font-size: 2.5rem;
+    font-size: 1rem;
     color: #c9c9c9;
     font-weight: 700;
+    padding: .5rem;
   }
 `
