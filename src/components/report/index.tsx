@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import { api } from '../../services/axios'
 import { DownloadReport } from '../icons'
 import * as Styled from './styled'
@@ -5,9 +6,10 @@ import * as Styled from './styled'
 type ReportProps = {
   textReport: string
   fileId: string
+  setStatusDeleteReport: Dispatch<SetStateAction<number>>
 }
 
-export const Report = ({ textReport, fileId }: ReportProps) => {
+export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProps) => {
   const removeingSpecialCharacters = textReport.replace(/[_.pdf]/g, '')
   const replacesFirstLetterOfReportToUppercase = removeingSpecialCharacters.replace(/[`^r`]/i, 'R')
   const replacesFirstLetterOfEstatisticaToUppercase = replacesFirstLetterOfReportToUppercase.replace('estatisticos', ' Estatisticos - ')
@@ -15,11 +17,13 @@ export const Report = ({ textReport, fileId }: ReportProps) => {
   const role = localStorage.getItem('relatorio.role')
 
   async function deleteReport(): Promise<void> {
-    await api.delete(`/relatorio`, {
+    const response = await api.delete(`/relatorio`, {
       params: {
         file_id: fileId
       },
     })
+
+    setStatusDeleteReport(response.status)
   }
 
   return (
