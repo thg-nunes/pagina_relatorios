@@ -1,37 +1,41 @@
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { ErrorAlert } from "../components/alerts/error";
+import { SuccessAlert } from "../components/alerts/success";
 import { DragAndDrop } from "../components/dragAndDrop";
-import { AuthContext } from "../contexts/authContext/authContext";
 import { api } from "../services/axios";
 import * as Styled from '../styles/pages/upload'
 
 export default function Upload() {
+  const { push } = useRouter()
+  const [statusUpload, setStatusupload] = useState<number>(0)
+
   const [files, setFiles] = useState<File[]>([])
   const [role, setRole] = useState('')
-  const { push } = useRouter()
 
   const cookies = parseCookies()
 
   async function handleSendFile() {
     if(files.length) {
-      files.forEach(async (file) => {
+      files.forEach(async (file, index) => {
         const formData = new FormData()
         formData.append('report_files', file)
 
-        await api.post('/relatorio', formData, {
+        const response = await api.post('/relatorio/upload', formData, {
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'multipart/form-data'
           }
         })
-        .then(() => {
-          alert('Arquivos enviados com sucesso!')
-          setFiles([])
-        })
-        .catch((err) => {
-          alert('Falha ao enviar os arquivos.')
-        })
+
+        if(index === files.length - 1) {
+          setStatusupload(response.status)
+
+          setTimeout(() => {
+            window.location.reload()
+          }, 3600)
+        }
       })
     }
   }
@@ -67,6 +71,12 @@ export default function Upload() {
               }}/>
             </Styled.SubmitButton>
           </Styled.DragAndDropContainer>
+          {statusUpload !== 0 && statusUpload === 200 && (
+            <SuccessAlert message='Relatórios enviados.' />
+          )}
+          {statusUpload !== 0 && statusUpload !== 200 && (
+            <ErrorAlert message='Relatórios não enviados.' />
+          )}
         </>
       )}
     </Styled.Container>

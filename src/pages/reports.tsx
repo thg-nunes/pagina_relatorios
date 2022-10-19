@@ -23,7 +23,7 @@ export default function Reports() {
   const cookies = parseCookies()
 
   const { state } = useMyContextFilters()
-  const [statusDeleteReport, setStatusDeleteReport] = useState<number>(0)
+  const [statusDeleteReport, setStatusDeleteReport] = useState<string>('')
   const [data, setData] = useState<ReportsFiles>([])
   const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
@@ -66,10 +66,10 @@ export default function Reports() {
           {data.map(data => (
             <Report key={data.id} textReport={data.file} fileId={data.id} setStatusDeleteReport={setStatusDeleteReport} />
           ))}
-          {statusDeleteReport !== 0 && statusDeleteReport === 200 && (
+          {statusDeleteReport !== '' && statusDeleteReport === 'ok' && (
             <MessageDeleteReporte isSuccess message='Relatório excluído com sucesso.' />
           )}
-          {statusDeleteReport !== 0 && statusDeleteReport !== 200 && (
+          {statusDeleteReport !== '' && statusDeleteReport !== 'ok' && (
             <MessageDeleteReporte isSuccess={false}  message='Relatório não excluído.' />
           )}
         </Styled.Container>
