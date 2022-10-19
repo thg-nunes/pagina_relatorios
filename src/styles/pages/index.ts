@@ -15,3 +15,8 @@ export const Container = styled.main`
     width: 80%;
   }
 `
+
+export const ReportsContainer = styled.div`
+  position: relative;
+  overflow: hidden;
+`

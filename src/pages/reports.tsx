@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { parseCookies } from 'nookies';
 import React, { useState, useEffect } from 'react';
 import { FiltersCreate } from "../client/filtersCreate"
+import { MessageDeleteReporte } from '../components/alerts/deleteReport';
 import { Report } from "../components/report"
 import { useMyContextFilters } from "../hooks/contexts/useMyContextFilters"
 import { api } from "../services/axios"
@@ -18,11 +19,13 @@ type Response = {
 }
 
 export default function Reports() {
-  const { state } = useMyContextFilters()
-  const [data, setData] = useState<ReportsFiles>([])
-  const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
   const { push } = useRouter()
   const cookies = parseCookies()
+
+  const { state } = useMyContextFilters()
+  const [statusDeleteReport, setStatusDeleteReport] = useState<number>(0)
+  const [data, setData] = useState<ReportsFiles>([])
+  const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
   useEffect(() => {
     async function fetchData(){
@@ -53,18 +56,24 @@ export default function Reports() {
   }
 
   return (
-    <>
+    <Styled.ReportsContainer>
       <FiltersCreate />
 
       {state.searchByMonthOrYear !== null && typeof state.searchByMonthOrYear !==  'string' ? (
-        <Report textReport={state.searchByMonthOrYear![0].file} fileId={state.searchByMonthOrYear[0].id} />
+        <Report textReport={state.searchByMonthOrYear![0].file} fileId={state.searchByMonthOrYear[0].id} setStatusDeleteReport={setStatusDeleteReport} />
       ) : (
         <Styled.Container>
           {data.map(data => (
-            <Report key={data.id} textReport={data.file} fileId={data.id} />
+            <Report key={data.id} textReport={data.file} fileId={data.id} setStatusDeleteReport={setStatusDeleteReport} />
           ))}
+          {statusDeleteReport !== 0 && statusDeleteReport === 200 && (
+            <MessageDeleteReporte isSuccess message='Relatório excluído com sucesso.' />
+          )}
+          {statusDeleteReport !== 0 && statusDeleteReport !== 200 && (
+            <MessageDeleteReporte isSuccess={false}  message='Relatório não excluído.' />
+          )}
         </Styled.Container>
       )}
-    </>
+    </Styled.ReportsContainer>
   )
 }
