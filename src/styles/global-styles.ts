@@ -27,6 +27,10 @@ export const GlobalStyle = createGlobalStyle`
     font: 400 1rem 'Open-Sans', sans-serif;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   button {
     cursor: pointer;
   }

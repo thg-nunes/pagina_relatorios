@@ -6,7 +6,7 @@ import * as Styled from './styled'
 type ReportProps = {
   textReport: string
   fileId: string
-  setStatusDeleteReport: Dispatch<SetStateAction<number>>
+  setStatusDeleteReport: Dispatch<SetStateAction<string>>
 }
 
 export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProps) => {
@@ -17,13 +17,14 @@ export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProp
   const role = localStorage.getItem('relatorio.role')
 
   async function deleteReport(): Promise<void> {
-    const response = await api.delete(`/relatorio`, {
-      params: {
-        file_id: fileId
-      },
-    })
+    const response = await api.delete(`/relatorio/${fileId}`)
 
-    setStatusDeleteReport(response.status)
+    const status: string = response.data.status
+    setStatusDeleteReport(status)
+
+    setTimeout(() => {
+      window.location.reload()
+    }, 3600)
   }
 
   return (
@@ -35,7 +36,7 @@ export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProp
             <img
               src='/icons/btn-delete.svg'
               alt='botao para deletar relatorio'
-              onClick={() => deleteReport()}
+              onClick={deleteReport}
             />
           )}
           <DownloadReport srcImage='/icons/btn-download.svg' altImage='botao para baixar relatorio' fileId={fileId} />
