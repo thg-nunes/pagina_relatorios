@@ -15,11 +15,11 @@ services:
     container_name: relatorios_backend
     restart: unless-stopped
     environment:
-      - PUBLIC_IP=$PUBLIC_IP
+      - SECRET_KEY=$SECRET_KEY
     build:
       network: host
       context: ../backend_relatorios
     volumes:
-      - $REPORTS_PATH:/app/data
+      - $DOCUMENTS_PATH:/app/data
     ports:
       - '8001:8001'
