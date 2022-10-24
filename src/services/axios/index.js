@@ -7,8 +7,7 @@ let isRefreshing = false
 let faileruRequest = []
 
 const api = axios.create({
-  // baseURL: `http://${process.env.NEXT_PUBLIC_API_HOST}:8001`,
-  baseURL: 'http://localhost:8000',
+  baseURL: `http://${process.env.NEXT_PUBLIC_API_HOST}:8001`,
   headers: {
     'Authorization': `Bearer ${cookies['relatorio.token']}`,
   }
