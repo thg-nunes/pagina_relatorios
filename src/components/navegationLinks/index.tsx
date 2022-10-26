@@ -13,17 +13,17 @@ import * as Styled from './styled'
       <section>
         <Link href='/reports'>
           <a>
-            <img className='icon' src='/icons/home-button.svg' alt='botão para voltar à página  inicial' />
+            <img className='icon' src='/relatorios/icons/home-button.svg' alt='botão para voltar à página  inicial' />
           </a>
         </Link>
         <Link href='/upload'>
           <a>
-            <img src='/icons/upload-button.svg' alt='botão para ir à página de upload' />
+            <img src='/relatorios/icons/upload-button.svg' alt='botão para ir à página de upload' />
           </a>
         </Link>
       </section>
       <img
-        src='/icons/signout-button.svg'
+        src='/relatorios/icons/signout-button.svg'
         alt='botão para deslogar do sistema'
         style={{
           cursor: 'pointer'

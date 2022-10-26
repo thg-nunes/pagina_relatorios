@@ -35,7 +35,7 @@ export const DragAndDrop = ({ files, setFiles }: DragAndDropProps) => {
           ) : (
           <Styled.Drop>
             <section>
-              <img src='/icons/upload-icon.svg' width='0' height='0' />
+              <img src='/relatorios/icons/upload-icon.svg' width='0' height='0' />
               <p>Arraste e solte os arquivos</p>
             </section>
           </Styled.Drop>

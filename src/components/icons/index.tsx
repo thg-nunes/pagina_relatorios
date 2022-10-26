@@ -22,7 +22,7 @@ export const DownloadReport = ({ altImage, srcImage, fileId }: DownloadReportPro
   return (
     <Container>
       <Image src={srcImage} alt={altImage} width='25px' height='25px' onClick={() => {
-        window.open(`http://${process.env.NEXT_PUBLIC_API_HOST}:8001/relatorio/${fileId}`)
+        window.open(`${process.env.NEXT_PUBLIC_API_HOST}/relatorios/${fileId}`)
       }} />
     </Container>
   )

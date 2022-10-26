@@ -17,7 +17,7 @@ export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProp
   const role = localStorage.getItem('relatorio.role')
 
   async function deleteReport(): Promise<void> {
-    const response = await api.delete(`/relatorio/${fileId}`)
+    const response = await api.delete(`/${fileId}`)
 
     const status: string = response.data.status
     setStatusDeleteReport(status)
@@ -34,12 +34,12 @@ export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProp
         <Styled.Icons>
           {role === 'admin' && (
             <img
-              src='/icons/btn-delete.svg'
+              src='/relatorios/icons/btn-delete.svg'
               alt='botao para deletar relatorio'
               onClick={deleteReport}
             />
           )}
-          <DownloadReport srcImage='/icons/btn-download.svg' altImage='botao para baixar relatorio' fileId={fileId} />
+          <DownloadReport srcImage='/relatorios/icons/btn-download.svg' altImage='botao para baixar relatorio' fileId={fileId} />
         </Styled.Icons>
       </span>
     </Styled.Container>

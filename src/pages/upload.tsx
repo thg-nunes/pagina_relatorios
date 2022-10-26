@@ -22,7 +22,7 @@ export default function Upload() {
         const formData = new FormData()
         formData.append('report_files', file)
 
-        const response = await api.post('/relatorio/upload', formData, {
+        const response = await api.post('/upload', formData, {
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'multipart/form-data'

@@ -33,7 +33,7 @@ export const AuthProvider = ({children}) => {
     })
 
     try {
-      const response = await api.post(`/relatorio/login`, dataForm, {
+      const response = await api.post(`/login`, dataForm, {
         headers: {
           'accept': 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded'
