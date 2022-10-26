@@ -4,6 +4,8 @@ services:
     image: jucema/relatorios_frontend
     container_name: relatorios_frontend
     restart: unless-stopped
+    environment:
+      - API_DNS=$API_DNS
     build:
       network: host
       context: .
