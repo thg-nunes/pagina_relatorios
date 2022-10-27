@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import styled from 'styled-components';
 import { useMyContextFilters } from "../../hooks/contexts/useMyContextFilters";
+import { searchReport } from "../../hooks/reports";
 import { api } from "../../services/axios";
 
 type OnSearchReportsProps = {
@@ -40,19 +41,14 @@ export const SearchReport = ({ altImage, srcImage, onSearchReports }: IconProps)
   const { push } = useRouter()
 
   async function getReportBYYearAndMonth() {
-    const response = await api.get<AxiosResponseProps>('/relatorios', {
-      params: {
-        year: onSearchReports.year,
-        month: onSearchReports.month
-      }
-    })
-
-    if(response) {
-      const { data } = response.data
-      context.dispatch({type: 'SEARCH_REPORT', payload: { data } })
+    const response = await searchReport(onSearchReports)
+    
+    if(!response.data.length) {
+      push('/notfoundreport')
     }
-
-    push('/notfoundreport')
+    
+    const { data } = response
+    context.dispatch({type: 'SEARCH_REPORT', payload: { data } })
   }
 
   return (

@@ -5,18 +5,13 @@ import { FiltersCreate } from "../client/filtersCreate"
 import { MessageDeleteReporte } from '../components/alerts/deleteReport';
 import { Report } from "../components/report"
 import { useMyContextFilters } from "../hooks/contexts/useMyContextFilters"
-import { api } from "../services/axios"
+import { getAllReports } from '../hooks/reports';
 import * as Styled from '../styles/pages'
 
 type ReportsFiles = {
   id: string
   file: string
 } []
-
-type Response = {
-  data: ReportsFiles
-  status: string
-}
 
 export default function Reports() {
   const { push } = useRouter()
@@ -29,15 +24,8 @@ export default function Reports() {
 
   useEffect(() => {
     async function fetchData(){
-      const date = new Date()
-
-      const response = await api.get<Response>(`/all`, {
-        params: {
-          year: date.getFullYear()
-        }
-      }).then(res => res.data)
-
-      setData(response.data)
+      const reports = await getAllReports()
+      setData(reports.data)
     }
 
     if(cookies['relatorio.token']) {

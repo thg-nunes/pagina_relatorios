@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
+import { _deleteReport } from '../../hooks/reports'
 import { api } from '../../services/axios'
 import { DownloadReport } from '../icons'
 import * as Styled from './styled'
@@ -16,17 +17,6 @@ export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProp
   const textTreatyReport = replacesFirstLetterOfEstatisticaToUppercase
   const role = localStorage.getItem('relatorio.role')
 
-  async function deleteReport(): Promise<void> {
-    const response = await api.delete(`/${fileId}`)
-
-    const status: string = response.data.status
-    setStatusDeleteReport(status)
-
-    setTimeout(() => {
-      window.location.reload()
-    }, 3600)
-  }
-
   return (
     <Styled.Container>
       <span>
@@ -36,7 +26,9 @@ export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProp
             <img
               src='/relatorios/icons/btn-delete.svg'
               alt='botao para deletar relatorio'
-              onClick={deleteReport}
+              onClick={async () => {
+                await _deleteReport({setStatusDeleteReport, fileId})
+              }}
             />
           )}
           <DownloadReport srcImage='/relatorios/icons/btn-download.svg' altImage='botao para baixar relatorio' fileId={fileId} />

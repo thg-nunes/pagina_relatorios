@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ErrorAlert } from "../components/alerts/error";
 import { SuccessAlert } from "../components/alerts/success";
 import { DragAndDrop } from "../components/dragAndDrop";
-import { api } from "../services/axios";
+import { uploadReport } from "../hooks/reports";
 import * as Styled from '../styles/pages/upload'
 
 export default function Upload() {
@@ -22,12 +22,7 @@ export default function Upload() {
         const formData = new FormData()
         formData.append('report_files', file)
 
-        const response = await api.post('/upload', formData, {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'multipart/form-data'
-          }
-        })
+        const response = await uploadReport({ formData })
 
         if(index === files.length - 1) {
           setStatusupload(response.status)
@@ -39,7 +34,7 @@ export default function Upload() {
       })
     }
   }
-
+  
   useEffect(() => {
     const role = localStorage.getItem('relatorio.role')
     setRole(role!)
