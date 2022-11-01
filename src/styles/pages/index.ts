@@ -18,5 +18,7 @@ export const Container = styled.main`
 
 export const ReportsContainer = styled.div`
   position: relative;
+  height: calc(100vh - 3rem);
   overflow: hidden;
+  z-index: 2;
 `
