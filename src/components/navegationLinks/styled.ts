@@ -35,6 +35,7 @@ export const Container = styled.div<ContainerProps>`
     img {
       width: 1.75rem;
       height: 1.75rem;
+      cursor: pointer;
     }
   }
 

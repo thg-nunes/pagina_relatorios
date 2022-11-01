@@ -1,12 +1,14 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext, useEffect, useState } from 'react'
-import { AuthContext, signOut } from '../../contexts/authContext/authContext'
+import { useState } from 'react'
+import {signOut } from '../../contexts/authContext/authContext'
+import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
 import * as Styled from './styled'
 
  export const NavegationLinks = () => {
   const { asPath } = useRouter()
+  const { dispatch } = useMyContextFilters()
+  const [popupVisible, setPopUpVisible] = useState(false)
 
   return (
     <Styled.Container asPath={asPath}>
@@ -21,6 +23,15 @@ import * as Styled from './styled'
             <img src='/relatorios/icons/upload-button.svg' alt='botão para ir à página de upload' />
           </a>
         </Link>
+        <img
+          className='icon-config'
+          src="/relatorios/icons/config.svg"
+          alt="botão para abrir tela para mudar senha"
+          onClick={() => {
+            setPopUpVisible(popupVisible)
+            dispatch({ type: 'SET_POPUPVISIBLE', payload: { popupVisible }})
+          }}
+        />
       </section>
       <img
         src='/relatorios/icons/signout-button.svg'
