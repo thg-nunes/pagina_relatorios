@@ -1,3 +1,4 @@
+import { setCookie, destroyCookie } from 'nookies'
 import { Dispatch, SetStateAction } from 'react'
 import { api } from '../../services/axios'
 
@@ -95,15 +96,24 @@ const handleUpdatePassword = async (
   setHasError: Dispatch<SetStateAction<boolean | undefined>>
 ) => {
   try {
-    await api.post('/reset_password', {
+    const response = await api.post('/reset_password', {
       oldPassword,
       newPassword
     })
     setHasError(false)
 
+    const { first_access } = response.data
+
+    destroyCookie(undefined, 'relatorio.first_access')
+    setCookie(undefined, 'relatorio.first_access', first_access)
+
     setTimeout(() => {
       setHasError(undefined)
     }, 3500)
+
+    setTimeout(() => {
+      window.location.reload()
+    }, 3600)
   } catch {
     setHasError(true)
 
