@@ -85,4 +85,31 @@ const downloadReport = (fileId?: string) => {
   })
 }
 
-export { _deleteReport, getAllReports, uploadReport, downloadReport, searchReport }
+type HandleUpdatePasswordProps = {
+  oldPassword: string
+  newPassword: string
+}
+
+const handleUpdatePassword = async (
+  {oldPassword, newPassword}: HandleUpdatePasswordProps,
+  setHasError: Dispatch<SetStateAction<boolean | undefined>>
+) => {
+  try {
+    await api.post('/reset_password', {
+      oldPassword,
+      newPassword
+    })
+    setHasError(false)
+
+    setTimeout(() => {
+      setHasError(undefined)
+    }, 3500)
+  } catch {
+    setHasError(true)
+
+    setTimeout(() => {
+      setHasError(undefined)
+    }, 3500)
+  }
+}
+export { _deleteReport, getAllReports, uploadReport, downloadReport, searchReport, handleUpdatePassword }

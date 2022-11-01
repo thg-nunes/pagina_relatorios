@@ -15,6 +15,7 @@ type ContextFiltersProps = {
       id: string,
       file: string
     }[] | null
+    popupVisible: boolean
   }
 }
 

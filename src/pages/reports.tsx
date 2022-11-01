@@ -17,7 +17,7 @@ type ReportsFiles = {
 export default function Reports() {
   const { push } = useRouter()
   const cookies = parseCookies()
-  const isFirstAccess = !cookies['first_access']
+  const isFirstAccess = cookies['first_access']
 
   const { state } = useMyContextFilters()
   const [statusDeleteReport, setStatusDeleteReport] = useState<string>('')
@@ -71,6 +71,12 @@ export default function Reports() {
           textDescription='Detectamos que é o seu primeiro acesso, cadastre uma nova senha para continuar'
         />
       }
+
+      {state.popupVisible && (
+        <PopUp
+          title='Alteração de Senha'
+        />
+      )}
     </Styled.ReportsContainer>
   )
 }
