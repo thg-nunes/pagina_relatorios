@@ -15,6 +15,8 @@ export const reducerFilter = (state: ReducerState, action: ReducerAction) => {
       return { ...state, year: action.payload.year }
     case 'SET_MONTH':
       return { ...state, month: action.payload.month }
+    case 'SET_POPUPVISIBLE':
+      return { ...state, popupVisible: action.payload.popupVisible }
     case 'SEARCH_REPORT':
       return { ...state, searchByMonthOrYear: action.payload.data }
     default:

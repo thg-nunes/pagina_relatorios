@@ -7,6 +7,7 @@ const stateFilters = {
       ? initial_date.getFullYear()
       : initial_date.getFullYear() - 1,
   searchByMonthOrYear: null,
+  popupVisible: false
 }
 
 export { stateFilters }
