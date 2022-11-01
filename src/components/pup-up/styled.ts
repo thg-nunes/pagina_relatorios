@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Input as InputStyle } from '../input/styled'
 
 export const Container = styled.div`
   position: absolute;
@@ -11,9 +12,15 @@ export const Container = styled.div`
   justify-content: center;
 
   background: rgba(0, 0, 0, .4);
+
+  > div {
+    position: absolute;
+    top: 0;
+  }
 `
 
 export const Content = styled.section`
+  position: relative;
   display: flex;
   flex-direction: column;
   max-width: 45rem;
@@ -21,6 +28,15 @@ export const Content = styled.section`
   padding: 2.25rem;
   gap: 1.75rem;
   background: white;
+
+  span {
+    position: absolute;
+    right: 2.25rem;
+    color: #AEAEAE;
+    font-size: 1.5rem;
+    margin: 0;
+    cursor: pointer;
+  }
 `
 
 export const TextSection = styled.section`
@@ -29,6 +45,8 @@ export const TextSection = styled.section`
   align-items: center;
   gap: 1.5rem;
 `
+
+export const Input = styled(InputStyle)``
 
 export const InputSection = styled.section`
   display: flex;
