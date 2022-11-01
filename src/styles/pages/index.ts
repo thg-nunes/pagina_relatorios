@@ -17,7 +17,9 @@ export const Container = styled.main`
 `
 
 export const ReportsContainer = styled.div`
+  width: calc(100% - 2.675rem);
   position: relative;
+  right: -2.75rem;
   height: calc(100vh - 3rem);
   overflow: hidden;
   z-index: 2;
