@@ -41,9 +41,10 @@ export const AuthProvider = ({children}) => {
       })
 
       // se o login der certo, recupero o token e adiciono nos cookies
-      const { access_token, refresh_token, role } = response.data
+      let { access_token, refresh_token, role, first_access } = response.data
       setCookie(undefined, 'relatorio.token', access_token)
       setCookie(undefined, 'relatorio.refresh_token', refresh_token)
+      setCookie(undefined, 'relatorio.first_access', first_access)
       localStorage.setItem('relatorio.role', role)
 
       // o Authorization foi adicionado no headers na config criada no diretorio /services/axios/index
