@@ -46,7 +46,7 @@ export default function Reports() {
   }
 
   return (
-    <Styled.ReportsContainer>
+    <Styled.ReportsContainer isFirstAccess={isFirstAccess}>
       <FiltersCreate />
 
       {state.searchByMonthOrYear !== null && typeof state.searchByMonthOrYear !==  'string' ? (
@@ -65,7 +65,7 @@ export default function Reports() {
         </Styled.Container>
       )}
 
-      {isFirstAccess &&
+      {isFirstAccess === 'true' &&
         <PopUp
           title='Alteração de Senha'
           textDescription='Detectamos que é o seu primeiro acesso, cadastre uma nova senha para continuar'

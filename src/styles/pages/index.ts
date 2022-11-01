@@ -16,10 +16,26 @@ export const Container = styled.main`
   }
 `
 
-export const ReportsContainer = styled.div`
-  width: calc(100% - 2.675rem);
+type IsFirstAccessProps = {
+  isFirstAccess: string |'true' | 'false'
+}
+
+export const ReportsContainer = styled.div<IsFirstAccessProps>`
+  width: ${({ isFirstAccess }) => {
+    if(isFirstAccess === 'true') {
+      return '100%'
+    } else {
+      return 'calc(100% - 2.675rem)'
+    }
+  }};
   position: relative;
-  right: -2.75rem;
+  right: ${({ isFirstAccess }) => {
+    if(isFirstAccess === 'true') {
+      return '0'
+    } else {
+      return '-2.75rem'
+    }
+  }};
   height: calc(100vh - 3rem);
   overflow: hidden;
   z-index: 2;

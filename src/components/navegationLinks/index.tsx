@@ -28,8 +28,8 @@ import * as Styled from './styled'
           src="/relatorios/icons/config.svg"
           alt="botão para abrir tela para mudar senha"
           onClick={() => {
-            setPopUpVisible(popupVisible)
-            dispatch({ type: 'SET_POPUPVISIBLE', payload: { popupVisible }})
+            setPopUpVisible(!popupVisible)
+            dispatch({ type: 'SET_POPUPVISIBLE', payload: { popupVisible: !popupVisible }})
           }}
         />
       </section>
