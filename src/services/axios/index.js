@@ -26,7 +26,7 @@ api.interceptors.response.use((response) => {
       isRefreshing = true
 
       // faço uma requeset para a rota de refreshToken enviando o refreshToken
-      api.post('/relatorio/refresh_token', null, {
+      api.post('/refresh_token', null, {
         headers: {
           'Authorization': `Bearer ${refreshToken}`
         }
