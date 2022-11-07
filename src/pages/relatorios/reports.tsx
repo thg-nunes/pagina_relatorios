@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
 import { parseCookies } from 'nookies';
 import React, { useState, useEffect } from 'react';
-import { FiltersCreate } from "../client/filtersCreate"
-import { MessageDeleteReporte } from '../components/alerts/deleteReport';
-import { PopUp } from '../components/pup-up';
-import { Report } from "../components/report"
-import { useMyContextFilters } from "../hooks/contexts/useMyContextFilters"
-import { getAllReports } from '../hooks/reports';
-import * as Styled from '../styles/pages'
+import { FiltersCreate } from "../../client/filtersCreate"
+import { MessageDeleteReporte } from '../../components/alerts/deleteReport';
+import { PopUp } from '../../components/pup-up';
+import { Report } from "../../components/report"
+import { useMyContextFilters } from "../../hooks/contexts/useMyContextFilters"
+import { getAllReports } from '../../hooks/reports';
+import * as Styled from '../../styles/pages'
 
 type ReportsFiles = {
   id: string
@@ -17,7 +17,7 @@ type ReportsFiles = {
 export default function Reports() {
   const { push } = useRouter()
   const cookies = parseCookies()
-  const isFirstAccess = cookies['first_access']
+  const isFirstAccess = cookies['relatorio.first_access']
 
   const { state } = useMyContextFilters()
   const [statusDeleteReport, setStatusDeleteReport] = useState<string>('')
@@ -33,7 +33,7 @@ export default function Reports() {
     if(cookies['relatorio.token']) {
       fetchData()
     } else {
-      push('/login')
+      push('/relatorios/login')
     }
   }, [])
 
@@ -44,6 +44,8 @@ export default function Reports() {
       })
     })
   }
+
+  console.log(isFirstAccess)
 
   return (
     <Styled.ReportsContainer isFirstAccess={isFirstAccess}>

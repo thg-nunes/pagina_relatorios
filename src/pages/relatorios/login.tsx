@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { parseCookies } from 'nookies'
 import { FormEvent, useContext, useEffect, useState } from 'react'
-import { ErrorAlert } from '../components/alerts/error'
+import { ErrorAlert } from '../../components/alerts/error'
 
-import { AuthContext } from '../contexts/authContext/authContext'
-import * as Styled from '../styles/pages/login'
+import { AuthContext } from '../../contexts/authContext/authContext'
+import * as Styled from '../../styles/pages/login'
 
 export default function Login() {
   const { push } = useRouter()
@@ -23,7 +23,7 @@ export default function Login() {
 
   useEffect(() => {
     if(cookies['relatorio.token']) {
-      push('/reports')
+      push('/relatorios/reports')
     }
   }, [cookies])
 

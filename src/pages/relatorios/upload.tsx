@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
-import { ErrorAlert } from "../components/alerts/error";
-import { SuccessAlert } from "../components/alerts/success";
-import { DragAndDrop } from "../components/dragAndDrop";
-import { uploadReport } from "../hooks/reports";
-import * as Styled from '../styles/pages/upload'
+import { ErrorAlert } from "../../components/alerts/error";
+import { SuccessAlert } from "../../components/alerts/success";
+import { DragAndDrop } from "../../components/dragAndDrop";
+import { uploadReport } from "../../hooks/reports";
+import * as Styled from '../../styles/pages/upload'
 
 export default function Upload() {
   const { push } = useRouter()
@@ -34,7 +34,7 @@ export default function Upload() {
       })
     }
   }
-  
+
   useEffect(() => {
     const role = localStorage.getItem('relatorio.role')
     setRole(role!)
@@ -44,11 +44,11 @@ export default function Upload() {
     }
 
     if(cookies['relatorio.token'] && role !== 'admin') {
-      push('/reports')
+      push('/relatorios/reports')
     }
 
     if(!cookies['relatorio.token']) {
-      push('/login')
+      push('/relatorios/login')
     }
   }, [])
 

@@ -6,7 +6,7 @@ export default function Home(){
 
   useEffect(() => {
     async function redirectLoginPage () {
-      await push('/login')
+      await push('/relatorios/login')
     }
 
     redirectLoginPage()

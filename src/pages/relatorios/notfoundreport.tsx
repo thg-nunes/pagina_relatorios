@@ -30,7 +30,7 @@ export default function NotFoundReport() {
     <Container>
       <section>
         <h2>Relatório não existente na base de dados.</h2>
-        <a href="/">Voltar à página anterior.</a>
+        <a href="/relatorios/reports">Voltar à página anterior.</a>
       </section>
     </Container>
   )
