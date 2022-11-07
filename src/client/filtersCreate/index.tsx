@@ -19,7 +19,7 @@ export const FiltersCreate = () => {
         labelText='Mês'
       />
 
-      <SearchReport srcImage='/relatorios/icons/btn-buscar.svg' altImage='icone de busca' onSearchReports={{
+      <SearchReport srcImage='/icons/btn-buscar.svg' altImage='icone de busca' onSearchReports={{
         year: context.state.year,
         month: context.state.month,
       }} />

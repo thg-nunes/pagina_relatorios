@@ -24,14 +24,14 @@ export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProp
         <Styled.Icons>
           {role === 'admin' && (
             <img
-              src='/relatorios/icons/btn-delete.svg'
+              src='/icons/btn-delete.svg'
               alt='botao para deletar relatorio'
               onClick={async () => {
                 await _deleteReport({setStatusDeleteReport, fileId})
               }}
             />
           )}
-          <DownloadReport srcImage='/relatorios/icons/btn-download.svg' altImage='botao para baixar relatorio' fileId={fileId} />
+          <DownloadReport srcImage='/icons/btn-download.svg' altImage='botao para baixar relatorio' fileId={fileId} />
         </Styled.Icons>
       </span>
     </Styled.Container>
