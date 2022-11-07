@@ -10,7 +10,7 @@ export const signOut = () => {
   destroyCookie(undefined, 'relatorio.token')
   destroyCookie(undefined, 'relatorio.refresh_token')
 
-  Router.push('/login')
+  Router.push('/relatorios/login')
 }
 
 export const AuthContext = createContext()
@@ -50,7 +50,7 @@ export const AuthProvider = ({children}) => {
       // o Authorization foi adicionado no headers na config criada no diretorio /services/axios/index
       api.defaults.headers['Authorization'] = `Bearer ${access_token}`
 
-      Router.push('/reports')
+      Router.push('/relatorios/reports')
     } catch (error) {
       setHaveError(true)
 

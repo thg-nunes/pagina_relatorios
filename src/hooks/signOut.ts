@@ -7,5 +7,5 @@ export const signOut = async () => {
   destroyCookie(undefined, 'relatorio.refresh_token')
   localStorage.clear()
 
-  await Router.push('/login')
+  await Router.push('/relatorios/login')
 }

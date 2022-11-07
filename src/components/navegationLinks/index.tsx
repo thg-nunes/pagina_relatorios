@@ -13,19 +13,19 @@ import * as Styled from './styled'
   return (
     <Styled.Container asPath={asPath}>
       <section>
-        <Link href='/reports'>
+        <Link href='/relatorios/reports'>
           <a>
-            <img className='icon' src='/relatorios/icons/home-button.svg' alt='botão para voltar à página  inicial' />
+            <img className='icon' src='/icons/home-button.svg' alt='botão para voltar à página  inicial' />
           </a>
         </Link>
-        <Link href='/upload'>
+        <Link href='/relatorios/upload'>
           <a>
-            <img src='/relatorios/icons/upload-button.svg' alt='botão para ir à página de upload' />
+            <img src='/icons/upload-button.svg' alt='botão para ir à página de upload' />
           </a>
         </Link>
         <img
           className='icon-config'
-          src="/relatorios/icons/config.svg"
+          src="/icons/config.svg"
           alt="botão para abrir tela para mudar senha"
           onClick={() => {
             setPopUpVisible(!popupVisible)
@@ -34,7 +34,7 @@ import * as Styled from './styled'
         />
       </section>
       <img
-        src='/relatorios/icons/signout-button.svg'
+        src='/icons/signout-button.svg'
         alt='botão para deslogar do sistema'
         style={{
           cursor: 'pointer'

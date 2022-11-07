@@ -11,7 +11,7 @@ export const Container = styled.div<ContainerProps>`
   height: calc(100vh - 3rem);
 
   display: ${({ asPath }) => {
-    if(asPath === '/login') return 'none'
+    if(asPath === '/relatorios/login') return 'none'
     return 'flex'
   }};
 

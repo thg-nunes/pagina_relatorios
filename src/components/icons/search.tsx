@@ -42,11 +42,11 @@ export const SearchReport = ({ altImage, srcImage, onSearchReports }: IconProps)
 
   async function getReportBYYearAndMonth() {
     const response = await searchReport(onSearchReports)
-    
+
     if(!response.data.length) {
-      push('/notfoundreport')
+      push('/relatorios/notfoundreport')
     }
-    
+
     const { data } = response
     context.dispatch({type: 'SEARCH_REPORT', payload: { data } })
   }
