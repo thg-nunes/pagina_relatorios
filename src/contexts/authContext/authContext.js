@@ -45,6 +45,7 @@ export const AuthProvider = ({children}) => {
       setCookie(undefined, 'relatorio.token', access_token)
       setCookie(undefined, 'relatorio.refresh_token', refresh_token)
       setCookie(undefined, 'relatorio.first_access', first_access)
+      setCookie(undefined, 'relatorio.username', username)
       localStorage.setItem('relatorio.role', role)
 
       // o Authorization foi adicionado no headers na config criada no diretorio /services/axios/index
