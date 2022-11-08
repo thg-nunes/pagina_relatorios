@@ -37,17 +37,22 @@ export const SearchReport = ({ altImage, srcImage, onSearchReports }: IconProps)
   async function getReportBYYearAndMonth() {
     const response = await searchReport(onSearchReports)
 
-    if(response.status === 'erro') {
+    if(response?.status === 'erro') {
       push('/relatorios/notfoundreport')
+    } else {
+      const data = response?.data
+      context.dispatch({type: 'SEARCH_REPORT', payload: { data } })
     }
-
-    const { data } = response
-    context.dispatch({type: 'SEARCH_REPORT', payload: { data } })
   }
 
   return (
     <Container>
-      <Image src={srcImage} alt={altImage} width='25px' height='25px' onClick={() => getReportBYYearAndMonth()} />
+      <Image
+        src={srcImage}
+        alt={altImage}
+        width='25px'
+        height='25px'
+        onClick={async () => await getReportBYYearAndMonth()} />
     </Container>
   )
 }

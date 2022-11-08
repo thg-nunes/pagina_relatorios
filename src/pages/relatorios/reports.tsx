@@ -42,6 +42,11 @@ export default function Reports() {
       data.forEach(file => {
         file.file = file.file.replace(month, `${monthIndex + 1 < 10 ? '0' : ''}${monthIndex+1}/`)
       })
+      if(state.searchByMonthOrYear !== null) {
+        state.searchByMonthOrYear.forEach(file => {
+          file.file = file.file.replace(month, `${monthIndex + 1 < 10 ? '0' : ''}${monthIndex+1}/`)
+        })
+      }
     })
   }
 

@@ -30,14 +30,19 @@ type AxiosResponseProps = {
 }
 
 const searchReport = async (onSearchReports: OnSearchReportsProps) => {
-  const response = await api.get<AxiosResponseProps>('/all', {
-    params: {
-      year: onSearchReports.year,
-      month: onSearchReports.month
-    }
-  })
+  if(onSearchReports.month === null) {
+    window.location.reload()
+    return
+  } else {
+    const response = await api.get<AxiosResponseProps>('/all', {
+      params: {
+        year: onSearchReports.year,
+        month: onSearchReports.month
+      }
+    })
 
-  return response.data
+    return response.data
+  }
 }
 
 type DeleteReportProps = {
