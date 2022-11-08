@@ -9,7 +9,6 @@ import * as Styled from './styled'
 type PopUpProps = {
   title: string
   textDescription?: string
-
 }
 
 export const PopUp = ({ title, textDescription = '' }: PopUpProps) => {
@@ -30,21 +29,25 @@ export const PopUp = ({ title, textDescription = '' }: PopUpProps) => {
           <Styled.TextDescription>{textDescription}</Styled.TextDescription>
         </Styled.TextSection>
 
-        <Styled.InputSection>
+        <Styled.FormSection>
           <Styled.Input
-            type='text'
+            type='password'
             placeholder='Senha Antiga'
             onChange={(e) => setOldPassword(e.target.value)}
           />
           <Styled.Input
-            type='text'
+            type='password'
             placeholder='Nova Senha'
             onChange={(e) => setNewPassword(e.target.value)}
           />
-          <Styled.Button onClick={async () => await handleUpdatePassword({ old_password, new_password, username }, setHasError)}>
-            Salvar
-          </Styled.Button>
-        </Styled.InputSection>
+          <Styled.Button
+            type='submit'
+            onClick={async (e) => {
+              e.preventDefault()
+
+              await handleUpdatePassword({ old_password, new_password, username }, setHasError)
+            }}>Salvar</Styled.Button>
+        </Styled.FormSection>
         {state.popupVisible && (
           <span onClick={() => dispatch({ type: 'SET_POPUPVISIBLE', payload: {
             popupVisible: false
