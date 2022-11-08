@@ -70,18 +70,6 @@ export default function Reports() {
         </Styled.Container>
       )}
 
-      {isFirstAccess === 'true' &&
-        <PopUp
-          title='Alteração de Senha'
-          textDescription='Detectamos que é o seu primeiro acesso, cadastre uma nova senha para continuar'
-        />
-      }
-
-      {state.popupVisible && (
-        <PopUp
-          title='Alteração de Senha'
-        />
-      )}
     </Styled.ReportsContainer>
   )
 }

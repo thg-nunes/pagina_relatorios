@@ -7,7 +7,7 @@ type ContainerProps = {
 export const Container = styled.div<ContainerProps>`
   position: absolute;
 
-  width: max-content;
+  width: 100%;
   height: calc(100vh - 3rem);
 
   display: ${({ asPath }) => {
@@ -18,9 +18,8 @@ export const Container = styled.div<ContainerProps>`
   flex-direction: column;
   justify-content: space-between;
 
-  padding: .5rem;
   border-right: 1px solid rgb(211, 211, 211);
-  z-index: 2;
+  z-index: 3;
 
   > img {
     width: 1.75rem;
@@ -52,4 +51,16 @@ export const Container = styled.div<ContainerProps>`
       }
     }
   }
+`
+
+export const Itens = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+  width: min-content;
+
+  padding: .5rem;
+  border-right: 1px solid rgb(211, 211, 211);
 `

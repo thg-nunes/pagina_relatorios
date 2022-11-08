@@ -5,18 +5,13 @@ export const Container = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 3rem);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   background: rgba(0, 0, 0, .4);
-
-  > div {
-    position: absolute;
-    top: 0;
-  }
 `
 
 export const Content = styled.section`
