@@ -1,12 +1,14 @@
+import { AxiosError } from "axios";
 import Image from "next/image"
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 import styled from 'styled-components';
 import { useMyContextFilters } from "../../hooks/contexts/useMyContextFilters";
 import { searchReport } from "../../hooks/reports";
-import { api } from "../../services/axios";
+import { ErrorAlert } from "../alerts/error";
 
-type OnSearchReportsProps = {
+export type OnSearchReportsProps = {
   year: number
   month: number
 }
@@ -15,14 +17,6 @@ type IconProps = {
   srcImage: string
   altImage: string
   onSearchReports: OnSearchReportsProps
-}
-
-type AxiosResponseProps = {
-  data: {
-    id: string
-    file: string
-  }[]
-  status: string
 }
 
 export const Container = styled.span`
@@ -43,7 +37,7 @@ export const SearchReport = ({ altImage, srcImage, onSearchReports }: IconProps)
   async function getReportBYYearAndMonth() {
     const response = await searchReport(onSearchReports)
 
-    if(!response.data.length) {
+    if(response.status === 'erro') {
       push('/relatorios/notfoundreport')
     }
 

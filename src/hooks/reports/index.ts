@@ -1,6 +1,8 @@
+import { useRouter } from 'next/router'
 import { setCookie, destroyCookie } from 'nookies'
 import { Dispatch, SetStateAction } from 'react'
 import { api } from '../../services/axios'
+import { useMyContextFilters } from '../contexts/useMyContextFilters'
 
 const date = new Date()
 
