@@ -1,3 +1,4 @@
+import { parseCookies } from 'nookies'
 import { useState } from 'react'
 import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
 import { handleUpdatePassword } from '../../hooks/reports'
@@ -12,8 +13,12 @@ type PopUpProps = {
 }
 
 export const PopUp = ({ title, textDescription = '' }: PopUpProps) => {
-  const [oldPassword, setOldPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
+  const [old_password, setOldPassword] = useState('')
+  const [new_password, setNewPassword] = useState('')
+
+  const cookies = parseCookies()
+  const username = cookies['relatorio.username']
+
   const { state, dispatch } = useMyContextFilters()
   const [hasError, setHasError] = useState<boolean>()
 
@@ -36,7 +41,7 @@ export const PopUp = ({ title, textDescription = '' }: PopUpProps) => {
             placeholder='Nova Senha'
             onChange={(e) => setNewPassword(e.target.value)}
           />
-          <Styled.Button onClick={async () => await handleUpdatePassword({ oldPassword, newPassword }, setHasError)}>
+          <Styled.Button onClick={async () => await handleUpdatePassword({ old_password, new_password, username }, setHasError)}>
             Salvar
           </Styled.Button>
         </Styled.InputSection>
