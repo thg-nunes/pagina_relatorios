@@ -29,6 +29,7 @@ export const Icons = styled.section`
   img {
     width: 25px;
     height: 25px;
+    cursor: pointer;
   }
 
   @media (max-width: 1024px) {
