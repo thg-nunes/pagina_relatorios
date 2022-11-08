@@ -45,8 +45,6 @@ export default function Reports() {
     })
   }
 
-  console.log(isFirstAccess)
-
   return (
     <Styled.ReportsContainer isFirstAccess={isFirstAccess}>
       <FiltersCreate />

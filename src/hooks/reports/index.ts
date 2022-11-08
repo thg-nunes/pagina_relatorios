@@ -87,18 +87,20 @@ const downloadReport = (fileId?: string) => {
 }
 
 type HandleUpdatePasswordProps = {
-  oldPassword: string
-  newPassword: string
+  username: string
+  old_password: string
+  new_password: string
 }
 
 const handleUpdatePassword = async (
-  {oldPassword, newPassword}: HandleUpdatePasswordProps,
+  { old_password, new_password, username }: HandleUpdatePasswordProps,
   setHasError: Dispatch<SetStateAction<boolean | undefined>>
 ) => {
   try {
     const response = await api.post('/reset_password', {
-      oldPassword,
-      newPassword
+      username,
+      old_password,
+      new_password
     })
     setHasError(false)
 
@@ -113,8 +115,8 @@ const handleUpdatePassword = async (
 
     setTimeout(() => {
       window.location.reload()
-    }, 3600)
-  } catch {
+    }, 4000)
+  } catch (error){
     setHasError(true)
 
     setTimeout(() => {
