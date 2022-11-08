@@ -2,12 +2,19 @@ import styled from "styled-components";
 
 type ContainerProps = {
   asPath: string
+  popupVisible: boolean
 }
 
 export const Container = styled.div<ContainerProps>`
   position: absolute;
 
-  width: 100%;
+  width: ${({ popupVisible }) => {
+    if(popupVisible) {
+      return '100%'
+    } else {
+      return 'min-content'
+    }
+  }};
   height: calc(100vh - 3rem);
 
   display: ${({ asPath }) => {

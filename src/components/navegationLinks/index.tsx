@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { parseCookies } from 'nookies'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {signOut } from '../../contexts/authContext/authContext'
 import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
 import { PopUp } from '../pup-up'
@@ -17,8 +17,12 @@ import * as Styled from './styled'
 
   const { state } = useMyContextFilters()
 
+  useEffect(() => {
+    setPopUpVisible(state.popupVisible)
+  },[state.popupVisible])
+
   return (
-    <Styled.Container asPath={asPath}>
+    <Styled.Container asPath={asPath} popupVisible={popupVisible}>
       <Styled.Itens>
         <section>
           <Link href='/relatorios/reports'>
@@ -36,7 +40,6 @@ import * as Styled from './styled'
             src="/icons/config.svg"
             alt="botão para abrir tela para mudar senha"
             onClick={() => {
-              setPopUpVisible(!popupVisible)
               dispatch({ type: 'SET_POPUPVISIBLE', payload: { popupVisible: true }})
             }}
           />
