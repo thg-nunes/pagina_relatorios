@@ -1,14 +1,15 @@
 import Link from 'next/link'
-import * as Styled from './styled'
+import { ReactNode } from 'react'
 
 type MyLinkProps = {
   href: string
+  children: ReactNode
 }
 
-export const MyLink = ({ href }: MyLinkProps) => {
+export const MyLink = ({ href, children }: MyLinkProps) => {
   return (
-    <Link href={`/${href === 'Home' ? '' : href.toLowerCase()}`} passHref>
-      <Styled.Container>{href}</Styled.Container>
+    <Link href={href}>
+      <a>{children}</a>
     </Link>
   )
 }
