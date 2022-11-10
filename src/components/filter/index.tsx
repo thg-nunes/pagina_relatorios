@@ -4,7 +4,7 @@ import { api } from '../../services/axios'
 import { FilterComponent } from './component'
 import * as Styled from './styled'
 
-type FilterProps = {
+export type FilterProps = {
   labelId: string
   labelText: string
 }
