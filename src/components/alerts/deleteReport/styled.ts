@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { Container as ContainerMessage } from '../error/styled'
+import { Container as ContainerMessage, Paragraph } from '../succesOrError/styled'
 
 type ContainerProps = {
   messageInScreen: boolean
-  isSuccess: boolean
+  hasError: boolean
 }
 
 export const Container = styled(ContainerMessage)<ContainerProps>`
@@ -11,7 +11,6 @@ export const Container = styled(ContainerMessage)<ContainerProps>`
     if(!messageInScreen) return 'none'
   }};
   top: 10%;
-  background: ${({ isSuccess }) => {
-    if(isSuccess) return '#00FA00'
-  }};
 `
+
+export const ContainerParagraph = styled(Paragraph)``

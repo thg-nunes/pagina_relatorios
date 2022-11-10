@@ -3,10 +3,10 @@ import * as Styled from './styled'
 
 type SuccessAlertProps = {
   message: string
-  isSuccess: boolean
+  hasError: boolean
 }
 
-export const MessageDeleteReporte = ({ message, isSuccess }: SuccessAlertProps) => {
+export const MessageDeleteReporte = ({ message, hasError }: SuccessAlertProps) => {
   const [messageInScreen, setMessageInScreen] = useState(true)
 
   useEffect(() => {
@@ -16,10 +16,10 @@ export const MessageDeleteReporte = ({ message, isSuccess }: SuccessAlertProps) 
   }, [])
 
   return (
-    <Styled.Container isSuccess={isSuccess} messageInScreen={messageInScreen} >
-      <p>
+    <Styled.Container hasError={hasError} messageInScreen={messageInScreen} >
+      <Styled.ContainerParagraph>
         {message}
-      </p>
+      </Styled.ContainerParagraph>
     </Styled.Container>
   )
 }
