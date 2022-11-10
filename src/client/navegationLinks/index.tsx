@@ -5,7 +5,7 @@ import {signOut } from '../../contexts/authContext/authContext'
 import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
 import { Icon } from '../../components/icons'
 import { MyLink } from '../../components/myLink'
-import { PopUp } from '../../components/pup-up'
+import { PopUp } from '../../components/pup-up/uploadPassword'
 import * as Styled from './styled'
 
  export const NavegationLinks = () => {

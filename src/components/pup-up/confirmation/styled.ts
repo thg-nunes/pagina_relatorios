@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Container as PopUpContainer, Content as PopUpContent, Title as PopUpTitle, Button as PopUpButton } from '../styled'
+import { Container as PopUpContainer, Content as PopUpContent, Title as PopUpTitle, Button as PopUpButton } from '../uploadPassword/styled'
 
 export const Container = styled(PopUpContainer)`
   left: 0;

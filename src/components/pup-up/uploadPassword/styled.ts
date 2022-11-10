@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Input as InputStyle } from '../input/styled'
-import { Container as AlertContainer } from '../alerts/succesOrError/styled'
+import { Input as InputStyle } from '../../input/styled'
+import { Container as AlertContainer } from '../../alerts/succesOrError/styled'
 
 export const Container = styled.div`
   position: absolute;

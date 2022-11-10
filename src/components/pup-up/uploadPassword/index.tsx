@@ -1,8 +1,8 @@
 import { parseCookies } from 'nookies'
 import { useState } from 'react'
-import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
-import { handleUpdatePassword } from '../../hooks/reports'
-import { Alert } from '../alerts/succesOrError'
+import { useMyContextFilters } from '../../../hooks/contexts/useMyContextFilters'
+import { handleUpdatePassword } from '../../../hooks/reports'
+import { Alert } from '../../alerts/succesOrError'
 import * as Styled from './styled'
 
 type PopUpProps = {
