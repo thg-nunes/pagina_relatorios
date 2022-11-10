@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react'
-import { _deleteReport } from '../../hooks/reports'
-import { DownloadReport } from '../icons'
+import { downloadReport, _deleteReport } from '../../hooks/reports'
+import { Icon } from '../icons'
 import { ConfimationAction } from '../pup-up/confirmation'
 import * as Styled from './styled'
 
@@ -35,13 +35,17 @@ export const Report = ({ textReport, fileId, setStatusDeleteReport }: ReportProp
         <p>{textTreatyReport}</p>
         <Styled.Icons>
           {role === 'admin' && (
-            <img
-              src='/icons/btn-delete.svg'
-              alt='botao para deletar relatorio'
-              onClick={() => setConfirmDeleteAction(!confirmDeleteAction)}
+            <Icon
+              srcImage='/icons/btn-delete.svg'
+              altImage='botao para deletar relatorio'
+              actionOnClick={() => setConfirmDeleteAction(!confirmDeleteAction)}
             />
           )}
-          <DownloadReport srcImage='/icons/btn-download.svg' altImage='botao para baixar relatorio' fileId={fileId} />
+          <Icon
+            srcImage='/icons/btn-download.svg'
+            altImage='botao para baixar relatorio'
+            actionOnClick={() => downloadReport(fileId)}
+          />
         </Styled.Icons>
       </span>
     </Styled.Container>
