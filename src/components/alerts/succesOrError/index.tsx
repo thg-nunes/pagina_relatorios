@@ -1,6 +1,6 @@
 import * as Styled from './styled'
 
-type AlertProps = {
+export type AlertProps = {
   message: string
   hasError: boolean
 }
