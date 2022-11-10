@@ -4,6 +4,8 @@ import { parseCookies } from 'nookies'
 import { useEffect, useState } from 'react'
 import {signOut } from '../../contexts/authContext/authContext'
 import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
+import { Icon } from '../icons'
+import { MyLink } from '../myLink'
 import { PopUp } from '../pup-up'
 import * as Styled from './styled'
 
@@ -25,34 +27,25 @@ import * as Styled from './styled'
     <Styled.Container asPath={asPath} popupVisible={popupVisible}>
       <Styled.Itens>
         <section>
-          <Link href='/relatorios/reports'>
-            <a>
-              <img className='icon' src='/icons/home-button.svg' alt='botão para voltar à página  inicial' />
-            </a>
-          </Link>
-          <Link href='/relatorios/upload'>
-            <a>
-              <img src='/icons/upload-button.svg' alt='botão para ir à página de upload' />
-            </a>
-          </Link>
-          <img
-            className='icon-config'
-            src="/icons/config.svg"
-            alt="botão para abrir tela para mudar senha"
-            onClick={() => {
+          <MyLink href='/relatorios/reports'>
+            <img className='icon' src='/icons/home-button.svg' alt='botão para voltar à página inicial' />
+          </MyLink>
+          <MyLink href='/relatorios/upload'>
+            <img className='icon' src='/icons/upload-button.svg' alt='botão para ir à página de upload' />
+          </MyLink>
+          <Icon
+            srcImage='/icons/config.svg'
+            altImage="botão para abrir tela para mudar senha"
+            actionOnClick={() => {
               dispatch({ type: 'SET_POPUPVISIBLE', payload: { popupVisible: true }})
             }}
           />
         </section>
-        <img
-          src='/icons/signout-button.svg'
-          alt='botão para deslogar do sistema'
-          style={{
-            cursor: 'pointer'
-          }}
-          onClick={() => {
-            signOut()
-          }}
+
+        <Icon
+          srcImage='/icons/signout-button.svg'
+          altImage='botão para deslogar do sistema'
+          actionOnClick={() => signOut()}
         />
       </Styled.Itens>
 
