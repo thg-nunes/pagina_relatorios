@@ -9,7 +9,7 @@ type DispatchFiltersData = {
 type ContextFiltersProps = {
   dispatch: (data: DispatchFiltersData) => void
   state: {
-    month: number
+    month: string
     year: number
     searchByMonthOrYear: {
       id: string,

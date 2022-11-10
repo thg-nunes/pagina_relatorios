@@ -1,5 +1,6 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
+import { api } from '../../services/axios'
 import * as Styled from './styled'
 
 type FilterProps = {
@@ -9,7 +10,6 @@ type FilterProps = {
 
 export const Filter = ({ labelId, labelText }: FilterProps) => {
   const context = useMyContextFilters()
-  const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
   const [yearOptionsVisible, setYearOptionsVisible] = useState(false)
   const [monthOptionsVisible, setMonthOptionsVisible] = useState(false)
@@ -18,49 +18,54 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
   const [allMonths, setAllMonths] = useState<ReactElement[]>([])
   const [hasMonthSelected, setHasMonthSelected] = useState(false)
 
-  function generateYears() {
-    const yearsVlid = []
-
-    /* na linha seguinte, 2022 é o ano onde iniciou a gereção dos relatorios, nesse caso, as opções disponiveis iniciam em 2022 */
-    for (let i = 2022; i <= context.state.year; i++) {
-      yearsVlid.unshift(
-        <span
-          key={i}
-          className={context.state.year === i ? 'selected': ''}
-          onClick={() => {
-            context.dispatch({type: 'SET_YEAR', payload: { year: i }})
-            setYearOptionsVisible(false)
-          }}
-        >{i}</span>
-      )
-    }
-
-    setAllYears(yearsVlid)
-  }
-
-  function generateMonths() {
-    const monthsVlid = []
-
-    for (let i = 0; i <= months.length; i++) {
-      monthsVlid.push(
-        <span
-          key={i}
-          className={context.state.month === i + 1 ? 'selected': ''}
-          onClick={() => {
-            context.dispatch({type: 'SET_MONTH', payload: { month: i + 1}})
-            setMonthOptionsVisible(false)
-            setHasMonthSelected(!hasMonthSelected)
-          }}
-        >{months[i]}</span>
-      )
-    }
-
-    setAllMonths(monthsVlid)
-  }
-
   useEffect(() => {
-    generateYears()
-    generateMonths()
+    const allYears = async () => {
+      const years: ReactElement[] = []
+
+      const { data: { data: arrayYears } } = await api.get<{ data: number[]}>('/years')
+
+      arrayYears.forEach((year) => {
+        years.unshift(
+          <span
+            key={year}
+            className={context.state.year === year ? 'selected': ''}
+            onClick={() => {
+              context.dispatch({type: 'SET_YEAR', payload: { year }})
+              setYearOptionsVisible(false)
+            }}
+          >{year}</span>
+        )
+      })
+
+      setAllYears(years)
+
+    }
+
+    const allMonths = async () => {
+      const months: ReactElement[] = []
+      const year = context.state.year
+
+      const { data: { data: arrayMonths } } = await api.get<{ data: string[]}>(`/months/${year}`)
+
+      arrayMonths.forEach((month, index) => {
+        months.push(
+          <span
+            key={index}
+            className={context.state.month === month ? 'selected': ''}
+            onClick={() => {
+              context.dispatch({type: 'SET_MONTH', payload: { month }})
+              setMonthOptionsVisible(false)
+              setHasMonthSelected(!hasMonthSelected)
+            }}
+          >{month}</span>
+        )
+      })
+
+      setAllMonths(months)
+    }
+
+    allYears()
+    allMonths()
   }, [context.state])
 
   return (
@@ -87,7 +92,7 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
           <Styled.InputAndOptions>
             <input
               type="text"
-              placeholder={context.state.month !== null ? String(months[context.state.month - 1]) : ('Selecionar')}
+              placeholder={context.state.month !== null ? context.state.month : 'Selecionar'}
               onClick={() => setMonthOptionsVisible(!monthOptionsVisible)}
             />
             <Styled.Options filterVisible={monthOptionsVisible}>
