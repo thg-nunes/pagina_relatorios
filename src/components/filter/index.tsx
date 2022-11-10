@@ -1,6 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
 import { api } from '../../services/axios'
+import { FilterComponent } from './component'
 import * as Styled from './styled'
 
 type FilterProps = {
@@ -71,37 +72,23 @@ export const Filter = ({ labelId, labelText }: FilterProps) => {
   return (
     <Styled.Container>
       {labelId === 'year' ? (
-        <>
-          <label id={labelId}>{labelText}:</label>
-          <Styled.InputAndOptions>
-            <input
-              type="text"
-              placeholder={String(context.state.year)}
-              onClick={() => setYearOptionsVisible(!yearOptionsVisible)}
-            />
-            <Styled.Options filterVisible={yearOptionsVisible}>
-              {allYears.map(year => (
-                year
-              ))}
-            </Styled.Options>
-          </Styled.InputAndOptions>
-        </>
+        <FilterComponent
+          labelId={labelId}
+          labelText={labelText}
+          dataToOptionsFilter={allYears}
+          setStateToFilter={setYearOptionsVisible}
+          placeholder={String(context.state.year)}
+          filterOptionsVisible={yearOptionsVisible}
+        />
       ) : (
-        <>
-          <label id={labelId}>{labelText}:</label>
-          <Styled.InputAndOptions>
-            <input
-              type="text"
-              placeholder={context.state.month !== null ? context.state.month : 'Selecionar'}
-              onClick={() => setMonthOptionsVisible(!monthOptionsVisible)}
-            />
-            <Styled.Options filterVisible={monthOptionsVisible}>
-              {allMonths.map(mmonth => (
-                mmonth
-              ))}
-            </Styled.Options>
-          </Styled.InputAndOptions>
-        </>
+        <FilterComponent
+          labelId={labelId}
+          labelText={labelText}
+          dataToOptionsFilter={allMonths}
+          setStateToFilter={setMonthOptionsVisible}
+          placeholder={context.state.month !== null ? context.state.month : 'Selecionar'}
+          filterOptionsVisible={monthOptionsVisible}
+        />
       )}
 
     </Styled.Container>
