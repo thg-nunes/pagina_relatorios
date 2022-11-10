@@ -4,7 +4,7 @@ import { theme } from '../styles/theme'
 import { GlobalStyle } from '../styles/global-styles'
 import { ContextProvider } from '../contexts/contextProvider'
 import { Header } from '../components/header'
-import { NavegationLinks } from '../components/navegationLinks'
+import { NavegationLinks } from '../client/navegationLinks'
 import { AuthProvider } from '../contexts/authContext/authContext'
 
 function MyApp({ Component, pageProps }: AppProps) {

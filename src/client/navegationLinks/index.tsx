@@ -1,12 +1,11 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { parseCookies } from 'nookies'
 import { useEffect, useState } from 'react'
 import {signOut } from '../../contexts/authContext/authContext'
 import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
-import { Icon } from '../icons'
-import { MyLink } from '../myLink'
-import { PopUp } from '../pup-up'
+import { Icon } from '../../components/icons'
+import { MyLink } from '../../components/myLink'
+import { PopUp } from '../../components/pup-up'
 import * as Styled from './styled'
 
  export const NavegationLinks = () => {
