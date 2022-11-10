@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
 import { useEffect, useState } from "react";
-import { ErrorAlert } from "../../components/alerts/error";
-import { SuccessAlert } from "../../components/alerts/success";
+import { Alert } from "../../components/alerts/succesOrError";
 import { DragAndDrop } from "../../components/dragAndDrop";
 import { uploadReport } from "../../hooks/reports";
 import * as Styled from '../../styles/pages/upload'
@@ -67,10 +66,10 @@ export default function Upload() {
             </Styled.SubmitButton>
           </Styled.DragAndDropContainer>
           {statusUpload !== 0 && statusUpload === 200 && (
-            <SuccessAlert message='Relatórios enviados.' />
+            <Alert message='Relatórios enviados.' hasError={false} />
           )}
           {statusUpload !== 0 && statusUpload !== 200 && (
-            <ErrorAlert message='Relatórios não enviados.' />
+            <Alert message='Relatórios não enviados.' hasError />
           )}
         </>
       )}

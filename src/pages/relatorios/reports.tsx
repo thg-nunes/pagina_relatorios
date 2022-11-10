@@ -3,7 +3,6 @@ import { parseCookies } from 'nookies';
 import React, { useState, useEffect } from 'react';
 import { FiltersCreate } from "../../client/filtersCreate"
 import { MessageDeleteReporte } from '../../components/alerts/deleteReport';
-import { PopUp } from '../../components/pup-up';
 import { Report } from "../../components/report"
 import { useMyContextFilters } from "../../hooks/contexts/useMyContextFilters"
 import { getAllReports } from '../../hooks/reports';
@@ -62,10 +61,10 @@ export default function Reports() {
             <Report key={data.id} textReport={data.file} fileId={data.id} setStatusDeleteReport={setStatusDeleteReport} />
           ))}
           {statusDeleteReport !== '' && statusDeleteReport === 'ok' && (
-            <MessageDeleteReporte isSuccess message='Relatório excluído com sucesso.' />
+            <MessageDeleteReporte hasError={false} message='Relatório excluído com sucesso.' />
           )}
           {statusDeleteReport !== '' && statusDeleteReport !== 'ok' && (
-            <MessageDeleteReporte isSuccess={false}  message='Relatório não excluído.' />
+            <MessageDeleteReporte hasError  message='Relatório não excluído.' />
           )}
         </Styled.Container>
       )}

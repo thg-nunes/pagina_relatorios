@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { parseCookies } from 'nookies'
 import { FormEvent, useContext, useEffect, useState } from 'react'
-import { ErrorAlert } from '../../components/alerts/error'
+import { Alert } from '../../components/alerts/succesOrError'
 
 import { AuthContext } from '../../contexts/authContext/authContext'
 import * as Styled from '../../styles/pages/login'
@@ -38,7 +38,7 @@ export default function Login() {
         <button type='submit'>Enviar</button>
       </Styled.Form>
 
-      {haveError && <ErrorAlert message='Email ou senha incorreta.' />}
+      {haveError && <Alert message='Email ou senha incorreta.' hasError />}
     </Styled.Container>
   )
 }

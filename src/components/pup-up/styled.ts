@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Input as InputStyle } from '../input/styled'
-import { Container as ErrorAlertContainer } from '../alerts/error/styled'
+import { Container as AlertContainer } from '../alerts/succesOrError/styled'
 
 export const Container = styled.div`
   position: absolute;
@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   background: rgba(0, 0, 0, .4);
 
-  ${ErrorAlertContainer} {
+  ${AlertContainer} {
     top: 0;
   }
 `

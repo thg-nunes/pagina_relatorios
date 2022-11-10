@@ -2,8 +2,7 @@ import { parseCookies } from 'nookies'
 import { useState } from 'react'
 import { useMyContextFilters } from '../../hooks/contexts/useMyContextFilters'
 import { handleUpdatePassword } from '../../hooks/reports'
-import { ErrorAlert } from '../alerts/error'
-import { SuccessAlert } from '../alerts/success'
+import { Alert } from '../alerts/succesOrError'
 import * as Styled from './styled'
 
 type PopUpProps = {
@@ -55,9 +54,9 @@ export const PopUp = ({ title, textDescription = '' }: PopUpProps) => {
         )}
       </Styled.Content>
 
-      {hasError && <ErrorAlert message='Erro ao atualizar a senha' />}
+      {hasError && <Alert message='Erro ao atualizar a senha' hasError />}
 
-      {!hasError && hasError !== undefined && <SuccessAlert message='Senha atualizada' />}
+      {!hasError && hasError !== undefined && <Alert message='Senha atualizada' hasError={false} />}
     </Styled.Container>
   )
 }
