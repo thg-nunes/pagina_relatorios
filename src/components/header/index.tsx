@@ -11,7 +11,7 @@ export const Header = ({text}: HeaderProps) => {
 
   return (
     <Styled.Container>
-        {pathname !== '/login' && (
+        {pathname !== '/relatorios/login' && (
           <section>
             <p>{text}</p>
           </section>
