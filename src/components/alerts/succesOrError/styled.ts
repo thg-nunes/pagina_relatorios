@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+type ContainerProps = {
+  hasError: boolean
+}
+
+export const Container = styled.div<ContainerProps>`
   position: absolute;
 
   width: 16.25rem;
@@ -11,14 +15,10 @@ export const Container = styled.div`
 
   color: white;
   font-weight: bold;
-  background: #ef233c;
+  background: ${({ hasError }) => hasError ? '#ef233c' : '#00FA00'} ;
   border-radius: 5px;
 
   animation: messageAnimation 2s ease-in-out forwards;
-
-  p {
-    line-height: 5.125rem;
-  }
 
   @keyframes messageAnimation {
     from {
@@ -27,4 +27,8 @@ export const Container = styled.div`
       left: calc(100% - 16.25rem);
     }
   }
+`
+
+export const Paragraph = styled.p`
+  line-height: 5.125rem;
 `
